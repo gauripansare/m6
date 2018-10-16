@@ -6,6 +6,7 @@ var _Navigator = (function () {
     var progressLevels = [47];
     var totalsimscore = 18;
     var presentermode = false;
+    
     var _NData = {
         "p1": {
             pageId: "p1",
@@ -23,7 +24,8 @@ var _Navigator = (function () {
             dataurl: "p2.htm",
             hinturl: "hintp2.htm",
             hasActivity: true,
-            isDND: false
+            isDND: false,
+            accessText:"Windows Desktop with File Explore Window open"
 
 
         },
@@ -34,7 +36,8 @@ var _Navigator = (function () {
             dataurl: "p3.htm",
             hinturl: "hintp3.htm",
             hasActivity: true,
-            isDND :true
+            isDND :true,
+            accessText:"Windows Desktop with File Explore with Remove Disk(F:) Window open"
         },
         "p4": {
             pageId: "p4",
@@ -43,7 +46,8 @@ var _Navigator = (function () {
             dataurl: "p4.htm",
             hinturl: "hintp4.htm",
             hasActivity: true,
-            isDND: false
+            isDND: false,
+            accessText:"Windows Desktop with File Explore with Remove Disk(F:) Window open"
         },
         "p5": {
             pageId: "p5",
@@ -52,7 +56,8 @@ var _Navigator = (function () {
             dataurl: "p5.htm",
             hinturl: "hintp5.htm",
             hasActivity: true,
-            isDND: false
+            isDND: false,
+            accessText:"Microsoft Edge Browser Window"
 
         },
         "p6": {
@@ -62,6 +67,7 @@ var _Navigator = (function () {
             dataurl: "p6.htm",
             hinturl: "hintp6.htm",
             hasActivity: true,
+            accessText:"Photo requirement with Resolution requirements page open"
 
         },
         "p7": {
@@ -71,7 +77,8 @@ var _Navigator = (function () {
             dataurl: "p7.htm",
             hinturl: "hintp7.htm",
             hasActivity: true,
-            isDND: false
+            isDND: false,
+            accessText:"Windows Desktop with File Explore Beautification Committee folder open"
 
         },
         "p8": {
@@ -81,6 +88,7 @@ var _Navigator = (function () {
             dataurl: "p8.htm",
             hinturl: "hintp8.htm",
             hasActivity: true,
+            accessText:"Windows Desktop with File Explore Beautification Committee, Pictures folder open"
 
         },
         "p9": {
@@ -90,7 +98,8 @@ var _Navigator = (function () {
             dataurl: "p9.htm",
             hinturl: "hintp9.htm",
             hasActivity: true,
-            isDND: false
+            isDND: false,
+            accessText:"image1_inner_city_decay.jpg Photo Gallery window open"
 
         },
         "p10": {
@@ -100,7 +109,8 @@ var _Navigator = (function () {
             dataurl: "p10.htm",
             hinturl: "hintp10.htm",
             hasActivity: true,
-            isDND: false
+            isDND: false,
+            accessText:"Photo Gallery - 1 running window, Make a copy  dialog  File name image1_inner_city_decay.jpg selected to save"
 
         },
         "p11": {
@@ -110,7 +120,8 @@ var _Navigator = (function () {
             dataurl: "p11.htm",
             hinturl: "hintp11.htm",
             hasActivity: true,
-            isDND: false
+            isDND: false,
+            accessText:"Photo Gallery - 1 running window, Make a copy  dialog  File name image1_inner_city_decay.jpg selected to save in Newspaper folder"
 
         },
         "p12": {
@@ -120,7 +131,8 @@ var _Navigator = (function () {
             dataurl: "p12.htm",
             hinturl: "hintp12.htm",
             hasActivity: true,
-            isDND: false
+            isDND: false,
+            accessText:"image1_inner_city_decay.jpg Photo Gallery window open"
 
         },
         "p13": {
@@ -130,6 +142,7 @@ var _Navigator = (function () {
             dataurl: "p13.htm",
             hinturl: "hintp13.htm",
             hasActivity: true,
+            accessText:"image2_empty-lot.jpg Photo Gallery window open"
 
         },
         "p14": {
@@ -139,6 +152,7 @@ var _Navigator = (function () {
             dataurl: "p14.htm",
             hinturl: "hintp14.htm",
             hasActivity: true,
+            accessText:"Photo Gallery - 1 running window, Make a copy  dialog  File name image2_empty-lot.jpg selected to save"
 
         },
         "p15": {
@@ -148,6 +162,7 @@ var _Navigator = (function () {
             dataurl: "p15.htm",
             hinturl: "hintp15.htm",
             hasActivity: true,
+            accessText:"Photo Gallery - 1 running window, Make a copy  dialog  File name image2_empty-lot.jpg selected to save in Friendlist folder"
 
         },
         "p16": {
@@ -157,6 +172,7 @@ var _Navigator = (function () {
             dataurl: "p16.htm",
             hinturl: "hintp16.htm",
             hasActivity: true,
+            accessText:"image2_empty-lot.jpg Photo Gallery window open"
 
         },
         "p17": {
@@ -166,6 +182,7 @@ var _Navigator = (function () {
             dataurl: "p17.htm",
             hinturl: "hintp17.htm",
             hasActivity: true,
+            accessText:"image3_laying-sod.jpg Photo Gallery window open"
             
 
         },
@@ -176,6 +193,7 @@ var _Navigator = (function () {
             dataurl: "p18.htm",
             hinturl: "hintp18.htm",
             hasActivity: true,
+            accessText:"Photo Gallery - 1 running window, Make a copy  dialog  File name image3_laying-sod.jpg selected to save"
            
 
         },
@@ -186,6 +204,7 @@ var _Navigator = (function () {
             dataurl: "p19.htm",
             hinturl: "hintp19.htm",
             hasActivity: true,
+            accessText:"Photo Gallery - 1 running window, Make a copy  dialog  File name image3_laying-sod.jpg selected to save in Friendlist folder"
             
 
         },
@@ -196,6 +215,7 @@ var _Navigator = (function () {
             dataurl: "p20.htm",
             hinturl: "hintp20.htm",
             hasActivity: true,
+            accessText:"image3_laying-sod.jpg Photo Gallery window open"
             
 
         },
@@ -206,6 +226,7 @@ var _Navigator = (function () {
             dataurl: "p21.htm",
             hinturl: "hintp21.htm",
             hasActivity: true,
+            accessText:"image4_home-grown.jpg Photo Gallery window open"
           
 
         },
@@ -216,6 +237,7 @@ var _Navigator = (function () {
             dataurl: "p22.htm",
             hinturl: "hintp22.htm",
             hasActivity: true,
+            accessText:"Photo Gallery - 1 running window, Make a copy  dialog  File name image4_home-grown.jpg selected to save"
             
         },
         "p23": {
@@ -225,6 +247,7 @@ var _Navigator = (function () {
             dataurl: "p23.htm",
             hinturl: "hintp23.htm",
             hasActivity: true,
+            accessText:"Photo Gallery - 1 running window, Make a copy  dialog  File name image4_home-grown.jpg selected to save in Newspaper folder"
            
         },
        "p24": {
@@ -234,6 +257,7 @@ var _Navigator = (function () {
           dataurl: "p24.htm",
           hinturl: "hintp24.htm",
           hasActivity: true,
+          accessText:"image4_home-grown.jpg Photo Gallery window open"
            
        },
        "p25": {
@@ -244,6 +268,7 @@ var _Navigator = (function () {
         hinturl: "hintp25.htm",
         hasActivity: true,
         isRedEye: true,
+        accessText:"image6_red-eye.jpg Photo Gallery window open"
           
        },
        "p26": {
@@ -252,7 +277,8 @@ var _Navigator = (function () {
            nextPageId: "p27",
            dataurl: "p26.htm",
            hinturl: "hintp26.htm",
-           hasActivity: true
+           hasActivity: true,
+           accessText:"image6_red-eye.jpg Photo Gallery window open"
 
        },
        "p27": {
@@ -261,7 +287,8 @@ var _Navigator = (function () {
            nextPageId: "p28",
            dataurl: "p27.htm",
            hinturl: "hintp27.htm",
-           hasActivity: true
+           hasActivity: true,
+           accessText:"Photo Gallery - 1 running window, Make a copy  dialog  File name image6_red-eye(2).jpg selected to save"
 
        },
        "p28": {
@@ -271,6 +298,7 @@ var _Navigator = (function () {
            dataurl: "p28.htm",
            hinturl: "hintp28.htm",
            hasActivity: true,
+           accessText:"Photo Gallery - 1 running window, Make a copy  dialog  File name image6_red-eye(2).jpg selected to save in Friendlist folder"
          
 
        },
@@ -281,6 +309,7 @@ var _Navigator = (function () {
            dataurl: "p29.htm",
            hinturl: "hintp29.htm",
            hasActivity: true,
+           accessText:"image6_red-eye.jpg Photo Gallery window open"
            
 
        },
@@ -291,6 +320,7 @@ var _Navigator = (function () {
            dataurl: "p30.htm",
            hinturl: "hintp30.htm",
            hasActivity: true,
+           accessText:"image7_spring-planting.jpg Photo Gallery window open"
        },
        "p31": {
            pageId: "p31",
@@ -299,6 +329,7 @@ var _Navigator = (function () {
            dataurl: "p31.htm",
            hinturl: "hintp31.htm",
            hasActivity: true,
+           accessText:"image7_spring-planting.jpg Photo Gallery window open"
        },
        "p32": {
            pageId: "p32",
@@ -307,6 +338,7 @@ var _Navigator = (function () {
            dataurl: "p32.htm",
            hinturl: "hintp32.htm",
            hasActivity: true,
+           accessText:"Photo Gallery - 1 running window, Make a copy  dialog  File name image7_spring-planting(2).jpg selected to save "
        },
        "p33": {
            pageId: "p33",
@@ -314,7 +346,8 @@ var _Navigator = (function () {
            nextPageId: "p34",
            dataurl: "p33.htm",
            hinturl: "hintp33.htm",
-           hasActivity: true,           
+           hasActivity: true,    
+           accessText:"Photo Gallery - 1 running window, Make a copy  dialog  File name image7_spring-planting(2).jpg selected to save in Friendlist folder"       
        },
        "p34": {
            pageId: "p34",
@@ -322,7 +355,8 @@ var _Navigator = (function () {
            nextPageId: "p35",
            dataurl: "p34.htm",
            hinturl: "hintp34.htm",
-           hasActivity: true
+           hasActivity: true,
+           accessText:"image7_spring-planting.jpg Photo Gallery window open"
        },
        "p35": {
            pageId: "p35",
@@ -330,7 +364,8 @@ var _Navigator = (function () {
            nextPageId: "p36",
            dataurl: "p35.htm",
            hinturl: "hintp35.htm",
-           hasActivity: true
+           hasActivity: true,
+           accessText:"Windows Desktop with File Explore Beautification Committee, Pictures folder open"
        },
        "p36": {
            pageId: "p36",
@@ -338,7 +373,8 @@ var _Navigator = (function () {
            nextPageId: "p37",
            dataurl: "p36.htm",
            hinturl: "hintp36.htm",
-           hasActivity: true
+           hasActivity: true,
+           accessText:"Microsoft Edge Browser Window"
        },
        "p37": {
            pageId: "p37",
@@ -346,7 +382,8 @@ var _Navigator = (function () {
            nextPageId: "p38",
            dataurl: "p37.htm",
            hinturl: "hintp37.htm",
-           hasActivity: true
+           hasActivity: true,
+           accessText:"Microsoft Edge Friend List videos page open"
        },
        "p38": {
            pageId: "p38",
@@ -354,7 +391,8 @@ var _Navigator = (function () {
            nextPageId: "p39",
            dataurl: "p38.htm",
            hinturl: "hintp38.htm",
-           hasActivity: true
+           hasActivity: true,
+           accessText:"Windows Desktop with File Explore Beautification Committee, Pictures folder open"
        },
        "p39": {
            pageId: "p39",
@@ -362,7 +400,8 @@ var _Navigator = (function () {
            nextPageId: "p40",
            dataurl: "p39.htm",
            hinturl: "hintp39.htm",
-           hasActivity: true
+           hasActivity: true,
+           accessText:"Windows Desktop with File Explore Beautification Committee open"
        },
        "p40": {
            pageId: "p40",
@@ -370,7 +409,8 @@ var _Navigator = (function () {
            nextPageId: "p41",
            dataurl: "p40.htm",
            hinturl: "hintp40.htm",
-           hasActivity: true
+           hasActivity: true,
+           accessText:"Windows Desktop with File Explore Beautification Committee, Videos folder open"
        },
        "p41": {
            pageId: "p41",
@@ -378,7 +418,8 @@ var _Navigator = (function () {
            nextPageId: "p42",
            dataurl: "p41.htm",
            hinturl: "hintp41.htm",
-           hasActivity: true
+           hasActivity: true,
+           accessText:"Movie Maker window open"
        },
        "p42": {
            pageId: "p42",
@@ -387,6 +428,7 @@ var _Navigator = (function () {
            dataurl: "p42.htm",
            hinturl: "hintp42.htm",
            hasActivity: true,
+           accessText:"Movie Maker window open"
           
        },
           "p43":{
@@ -414,6 +456,8 @@ function OnPageLoad() {
         $("#header-title h1").hide()
         $("#header-title").addClass("startpage");
     }
+   
+    
     _ModuleCommon.OnPageLoad();
 
 
@@ -426,6 +470,7 @@ return {
         this.LoadPage("p1");
     },
     LoadPage: function (pageId, jsonObj) {
+            this.SetBookMarkPage(pageId);
         if (jsonObj == undefined) {
             jsonObj = {};
         }
@@ -441,7 +486,8 @@ return {
             $("#linknext").k_enable();
             $("footer").hide();
             $("#header-progress").hide();
-            _ModuleCommon.AppendFooter();
+            if(presentermode)
+                 _ModuleCommon.AppendPresentationFooter();
 
         }
         if (_currentPageObject.hasActivity != undefined && _currentPageObject.hasActivity && !this.IsAnswered()) {
@@ -459,40 +505,59 @@ return {
         _currentPageObject.isVisited = true;
 
         var pageUrl = _Settings.dataRoot + _currentPageObject.dataurl + _Caching.GetUrlExtension();;
+            if (_currentPageObject.pageId == "p2") { // temporary fix
+                $("#progressdiv").css("margin-left", "-20px")
+            }
+            else {
+                $("#progressdiv").css("margin-left", "-15px")
+            }
         if (_currentPageObject.isStartPage) {
             $(".main-content").load(pageUrl, function () {
                 OnPageLoad();                   
-                setReader("header1");    
-
+                // setReader("header1");    
+                    $("#header1").focus();
             });
         } else {
             $(".main-content").fadeTo(250, 0.25, function () {
                 $(".main-content").load(pageUrl, function () {
                     $(this).fadeTo(600, 1)
-                    OnPageLoad();
-                    if(_currentPageId=="p43")//  change to assessment id
-                        {
-                            showQuestion();
+                        if ($(".activityimg").length > 0) {
+                           $('.activityimg').load(function () {
+                               OnPageLoad();
+                               if(_currentPageObject.pageId == "p2")
+                                     $("#titleheader").focus();
+                               else
+                                  {
+                                      if (_currentPageId != "p28") {
+                                        $("#progressdiv").focus();
+                                    }
+                                    else {
+                                        $("#Questioninfo").focus();
+                                    }
+                                     }
+                         if(presentermode)
+                            {
+                                _ModuleCommon.PresenterMode();
+                            }
+                    
+                            });
                         }
-                    if(_currentPageObject.pageId == "p2")
-                        setReader("titleheader");
-                    else
+                
+                         if(_currentPageId=="p43")//  change to assessment id
                         {
-                        setReader("titleheader");
+                          _Assessment.ShowQuestion();
                         }
                         $("#hintdiv").show();
                         if(_currentPageObject.hideHint !=undefined && _currentPageObject.hideHint)
                         {
                             $("#hintdiv").hide();
                         }
-                            if(presentermode)
-                            {
-                                _ModuleCommon.PresenterMode();
-                            }
+                           
                        
                     $(".hintcontent").load("pagedata/hintdata/" + _currentPageObject.hinturl, function () { });
                        
                     //$("h2.pageheading").focus();
+                        _Navigator.SetBookmarkData();
                 });
             })
         }
@@ -520,7 +585,7 @@ return {
                 currentQuestionIndex  = currentQuestionIndex - 1;
                 $("#Summary").empty();
                 $("#Summary").hide();
-				showQuestion();				
+                _Assessment.ShowQuestion();
             }
             else{
                 this.LoadPage(_currentPageObject.prevPageId);
@@ -539,8 +604,8 @@ return {
              if ( typeof(currentQuestionIndex) !='undefined' && typeof(gRecordData.Questions) !='undefined'  && (currentQuestionIndex +1) < gRecordData.Questions.length ) {
                     currentQuestionIndex  = currentQuestionIndex + 1
                     $("#Questioninfo").show();
-                    showQuestion()
-                    
+                    _Assessment.ShowQuestion()
+
                     //this.UpdateProgressBar();
                     if(gRecordData.Status !="Completed")
                         {
@@ -560,7 +625,7 @@ return {
                         $("#Summary").show();
                         $("#Questioninfo").hide();
 				        $("#Summary").load("pagedata/Summary.htm",function(){
-                            showSummary()                           
+                        _Assessment.ShowSummary()
                             $("#linkprevious").k_enable();
                             
                         })
@@ -668,6 +733,62 @@ return {
         },
         IsPresenterMode:function(){
             return presentermode;
+        },
+        GetBookmarkData: function () {
+            var bookmarkdata = _ScormUtility.GetSuspendData();
+            if (bookmarkdata != undefined && bookmarkdata != "") {
+                bookmarkdata = JSON.parse(bookmarkdata);
+                this.SetNavigatorBMData(bookmarkdata.VisistedPages)
+                progressLevels = bookmarkdata.progressLevels;
+                _ModuleCommon.SetReviewData(bookmarkdata.ReviewData)
+                _Assessment.Setbookmarkdata(bookmarkdata.AssessmentData)
+            }
+
+        },
+        GetNavigatorBMData: function () {
+            var gVisistedPages = [];
+            for (var i in _NData) {
+                if (_NData[i].isAnswered) {
+                    gVisistedPages.push(_NData[i].pageId)
+                }
+            }
+            return gVisistedPages;
+        },
+        SetNavigatorBMData: function (gVisistedPages) {
+
+            for (var i = 0; i < gVisistedPages.length; i++) {
+                _NData[gVisistedPages[i]].isAnswered = true;
+            }
+        },
+        SetBookmarkData: function () {
+            if (!this.IsScormOrRevel())
+                return;
+            var bookmarobj = {}
+            bookmarobj.VisistedPages = this.GetNavigatorBMData();
+            bookmarobj.progressLevels = progressLevels;
+            bookmarobj.ReviewData = _ModuleCommon.GetReviewData();
+            bookmarobj.AssessmentData = _Assessment.Getbookmarkdata();
+            _ScormUtility.SetSuspendData(JSON.stringify(bookmarobj))
+        },
+        SetBookMarkPage: function (pageid) {
+            _ScormUtility.SetBookMark(pageid);
+        },
+        GetBookMarkPage: function () {
+            var pageid = "";
+            pageid = _ScormUtility.GetBookMark();
+            return pageid;
+        },
+        Initialize: function () {
+            if (isscorm) {
+                _ScormUtility.Init();
+            }
+        },
+        IsScormOrRevel: function () {
+            if (isscorm == true)
+                return true;
+
+            return false;
+
         }
 };
 })();

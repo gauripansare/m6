@@ -208,10 +208,11 @@ cursor: pointer;
 }
 
 .activityContainer {
-    -webkit-user-select: none; /* webkit (safari, chrome) browsers */
-    -moz-user-select: none; /* mozilla browsers */
-    -khtml-user-select: none; /* webkit (konqueror) browsers */
-    -ms-user-select: none; /* IE10+ */
+  /*  -webkit-user-select: none; /* webkit (safari, chrome) browsers */
+  /*  -moz-user-select: none; /* mozilla browsers */
+  /*  -khtml-user-select: none; /* webkit (konqueror) browsers */
+  /*  -ms-user-select: none; /* IE10+ */
+    -webkit-overflow-scrolling: touch; 
 }
 
 #droppable {
@@ -436,3 +437,32 @@ border:none !important;
         float: left;
         margin-left: 8%;
     }
+/*grid line over crop image*/
+    /* .grid-container {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        /* cursor: pointer; */
+        /* background-color: #ffffff; */
+      /*  padding: 10px;
+        min-height: 200px;
+        }
+        .grid-item {
+        /* background-color: rgba(255, 255, 255, 0.8); */
+      /* border: 1px solid #cdcdcd;
+        padding: 20px;
+        font-size: 30px;
+        text-align: center;
+        } */
+
+        /* #resizable { width: 150px; height: 150px; padding: 0.5em; }
+#resizable h3 { text-align: center; margin: 0; } */
+
+
+table, th, td {
+    border: 1px solid #cdcdcd;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 15px;
+    text-align: left;
+}
