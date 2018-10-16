@@ -307,7 +307,7 @@ $(document).on("change", '#cropSliderContainer .cropSliderValue', function () {
     });
     $('.cropSliderValue').attr("value", cropSlideValue);
     cust_ShowCropSliderValue(cropSlideValue);
-    if(iOS || isAndroid){
+    if(iOS){
         var cropwidth = Number($('.cropSliderValue').val());
          var cropheight = 242;
                   if (cropwidth >= 235 && cropwidth <= 295) {

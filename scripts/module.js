@@ -1,5 +1,5 @@
 ﻿
-var redEyeClickCount = 0;
+var redEyeClickCount = 0;   
 var isredEye1Clicked = false;
 var isredEye2Clicked = false;
 var isIE11version = !!navigator.userAgent.match(/Trident.*rv\:11\./);
@@ -1133,7 +1133,7 @@ AddCropData: function (cropwidth, cropheight, isCorrect) {
 
     if (!found) {
         var _obj = {};
-        _obj.pageId = gCurrPageObj.PageId;
+        _obj.pageId = currentPageData.PageId;
         var position = { width: cropwidth, height: cropheight, isCorrect: isCorrect };
         _obj.PositionsCrop = [position];
         pageReviewData = _obj;
