@@ -321,7 +321,7 @@ $(document).on("change", '#cropSliderContainer .cropSliderValue', function () {
                   }
               }
 });
-$(document).on("touchstart", '#cropSliderContainer .cropSliderValue', function () {
+$(document).on("touchend", '#cropSliderContainer .cropSliderValue', function () {
     debugger;
     if(iOS || isAndroid){
       var cropwidth = Number($('.cropSliderValue').val());
@@ -336,10 +336,18 @@ $(document).on("touchstart", '#cropSliderContainer .cropSliderValue', function (
                     _ModuleCommon.AddCropData(cropwidth, cropheight, false);
                 }
             }
-            });
+     });
+
+     
 function cust_ShowCropSliderValue(_videoSlideValue) {
     $("#cropSliderContainerResize").css("width", _videoSlideValue + "px");
-    $("#gridcontainer").css("width", _videoSlideValue + "px");
+    // $("#gridcontainer").css("width", _videoSlideValue + "px");
+     $(".hdr_table").css("width", _videoSlideValue + "px"); 
+     if(isAndroid){
+        $(".hdr_table").attr("aria-hidden","true")
+
+     }
+     
 }
 
 

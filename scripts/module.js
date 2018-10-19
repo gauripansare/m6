@@ -794,6 +794,7 @@ HotspotClick: function (_hotspot, event) {
                 //$("#divHotspots0_3").focus();
             }
             $("#divHotspots0_1").hide();
+            $("#divHotspots1_2").focus();
             break;
         case "redEye1":
             isredEye1Clicked = true;
@@ -812,6 +813,7 @@ HotspotClick: function (_hotspot, event) {
                 $("#divHotspots0_1").removeAttr("disabled")
                 $("#divHotspots0_1").removeAttr("aria-disabled")
             }
+            $("#divHotspots0_1").focus();
             break;
         case "redEye2":
             isredEye2Clicked = true;
@@ -829,14 +831,16 @@ HotspotClick: function (_hotspot, event) {
                 $("#divHotspots0_1").removeAttr("disabled")
                 $("#divHotspots0_1").removeAttr("aria-disabled")
             }
-                  
+            $("#divHotspots0_1").focus();
             break;
         case "cropPage":
           
             this.setCropPageData();
             $("#gridcontainer").show();
+            
            // $("#gridcontainer").resizable({});
             $("#divHotspots0_1").hide();
+            $("#cropSliderContainer").focus();
             break;
         case "videotrim":
            

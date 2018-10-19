@@ -441,14 +441,14 @@ border:none !important;
     /* .grid-container {
         display: grid;
         grid-template-columns: auto auto auto;
-        /* cursor: pointer; */
-        /* background-color: #ffffff; */
-      /*  padding: 10px;
+        cursor: pointer; 
+        background-color: #ffffff;
+        padding: 10px;
         min-height: 200px;
         }
         .grid-item {
-        /* background-color: rgba(255, 255, 255, 0.8); */
-      /* border: 1px solid #cdcdcd;
+         background-color: rgba(255, 255, 255, 0.8);
+       border: 1px solid #cdcdcd;
         padding: 20px;
         font-size: 30px;
         text-align: center;
@@ -461,6 +461,10 @@ border:none !important;
 table, th, td {
     border: 1px solid #cdcdcd;
     border-collapse: collapse;
+    resize: vertical;
+}
+.hdr_table{
+    table-layout: auto;
 }
 th, td {
     padding: 15px;
