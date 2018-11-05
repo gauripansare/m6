@@ -144,6 +144,11 @@ width: 21px;
  top: 137px;
 left: 572px;
 }
+
+.divHotSpot:hover,.divHotSpotdbl:hover {
+    box-shadow: 0 2px 16px -5px #000;
+    opacity: 0.8;
+}
 .divreviewsubmit{
     display: flex;
     justify-content: center
@@ -167,6 +172,10 @@ left: 572px;
 
 .greenspan {
     color: #01662C;
+    font-weight: bold;
+}
+.redspan {
+    color: #B22222;
     font-weight: bold;
 }
 
@@ -353,7 +362,7 @@ border:none !important;
         -webkit-border-radius: 100%;
     }
     
-    .assessmentradio:checked + .inputcircle {
+    .assessmentradio:checked + .inpputtext .inputcircle, #Summary .assessmentradio:checked + .inpputtext .inputcircle {
         color: #047a9c;
     }
     
@@ -436,19 +445,20 @@ border:none !important;
     .question-band{
         float: left;
         margin-left: 8%;
+    position: relative;
     }
 /*grid line over crop image*/
     /* .grid-container {
         display: grid;
         grid-template-columns: auto auto auto;
-        /* cursor: pointer; */
-        /* background-color: #ffffff; */
-      /*  padding: 10px;
+        cursor: pointer; 
+        background-color: #ffffff;
+        padding: 10px;
         min-height: 200px;
         }
         .grid-item {
-        /* background-color: rgba(255, 255, 255, 0.8); */
-      /* border: 1px solid #cdcdcd;
+         background-color: rgba(255, 255, 255, 0.8);
+       border: 1px solid #cdcdcd;
         padding: 20px;
         font-size: 30px;
         text-align: center;
@@ -461,8 +471,37 @@ border:none !important;
 table, th, td {
     border: 1px solid #cdcdcd;
     border-collapse: collapse;
+    resize: vertical;
+}
+.hdr_table{
+    table-layout: auto;
 }
 th, td {
     padding: 15px;
     text-align: left;
 }
+
+.quetiontext{
+    margin-left: 20px;
+}
+.inpputtext{
+    display: block;
+    margin: 5px 0;
+}
+#Summary .inpputtext{
+   /* margin: 0px;*/
+}
+/*Presenter Mode css start*/
+.presentationModeFooter {
+    display: inline-block;
+    background-color: #1a76cb;
+    height: 29px;
+    width: 100%;
+    color: white;
+    text-align: center;
+}
+.accessibility{
+    font-size: 0;
+    opacity: 0;
+}
+/*presenter Mode css End*/

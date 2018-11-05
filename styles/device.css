@@ -70,12 +70,19 @@
     .question-band{
         margin-left: 13%;
     }
-    .input-url{width:325px;height:17px;}
+    .activity{
+        height: 600px;
+        overflow-y: scroll;
+    }
 }
 
 @media screen and (max-width : 500px) {
     h1 {
         font-size: 20px;
+    }
+    .input-url {
+        width: 325px !important;
+        height: 19px;
     }
 
     .header-informarion p, .header-informarion div, .header-informarion span, .closehintlink {
@@ -103,10 +110,21 @@
     .question-band{
         margin-left: 13%;
     }
+    .questioninnerwrapper{
+        padding-right: 7px;
+    }
 
 }
 
-@media screen and (max-width : 480px) {  
+@media screen and (max-width : 480px) {
+
+    #header-title:not(.startpage) img {
+        /*display: none;*/
+      
+    }
+    .statpageheadmargin{
+        /*margin-top:60px !important;*/   
+    }
   
     .question-band{
         margin-left: 17%;

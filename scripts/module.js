@@ -3,6 +3,7 @@ var redEyeClickCount = 0;
 var isredEye1Clicked = false;
 var isredEye2Clicked = false;
 var isIE11version = !!navigator.userAgent.match(/Trident.*rv\:11\./);
+var isSafari = navigator.userAgent.toLowerCase().indexOf('safari/') > -1;
 var isIEEdge = /Edge/.test(navigator.userAgent);
 var iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
 var isAndroid = navigator.userAgent.toLowerCase().indexOf("android") > -1;
@@ -184,13 +185,13 @@ var _ModuleCommon = (function () {
                     
                         if (posObj.isCorrect) {
                             var _div = "<div class='reviewDiv Correct' style='z-index:5;width:39px;height:39px;position:absolute;left:" + posObj.posX + "px;top:" + posObj.posY + "px;'><img src='assets/images/review-correct.png' style='width:39px;height:35px;' /></div>";
-                            appendImage.append(_div);
+                            appendImage.parent().append(_div);
 
 
                         } else {
                             var _divI = "<div class='reviewDiv InCorrect' style='z-index:5;width:39px;height:35px;position:absolute;left:" + posObj.posX + "px;top:" + posObj.posY + "px;'><img src='assets/images/review-incorrect.png' style='width:39px;height:35px;' /></div>";
 
-                            appendImage.append(_divI);
+                            appendImage.parent().append(_divI);
                         }
                     }
                 }
@@ -719,6 +720,8 @@ PresenterMode:function(){
            
             
             $("#linknext").k_enable();
+            _Navigator.SetPageStatus(true);
+            _Navigator.UpdateProgressBar();
         },
 ApplycontainerWidth: function () {
     debugger;
@@ -749,7 +752,9 @@ OrientationChange: function () {
 
 },
 HotspotClick: function (_hotspot, event) {
-    debugger;
+            if (_Navigator.IsRevel()) {
+                LifeCycleEvents.OnInteraction("Hotspot click.")
+            }
     if (_Navigator.IsAnswered())
         return;
     var action = _hotspot.attr("action")
@@ -1208,70 +1213,27 @@ InputDND: function (imgObj,event) {
         }
     }
 },
-AppendPresentationFooter: function () {
+        AppendFooter: function () {
     if ($(".presentationModeFooter").length == 0) {
       //var str = '<div class="levelfooterdiv"><div class="navBtn prev" onClick="_Navigator.Prev()" role="button" tabindex = 195 aria-label="Previous"><a id="prev_arrow" href="#"></a></div><div style="display: inline-block;width: 2px;"></div><div class="boxleveldropdown" style="width: 150px;"  role="button" tabindex = 196 aria-label="Scorecard"><span class="leftarrow"></span><ul class="levelmenu"><li class="uparrow" style = "width: 100px; margin-left: -8px;"><span class="menutitle" >Scorecard</span><div class="levelsubMenu" tabindex = 197 role="text">Total Score - <br>Activity Score - </div><a class="menuArrow"></a></div><div style="display: inline-block;width: 2px;"></div><div class="navBtn next" onClick="_Navigator.Next()" role="button" tabindex = 198 aria-label="Next"><a id="next_arrow" href="#"></a></div></div>';
       var str = '<div class="presentationModeFooter">Presentation Mode</div>';
       $("footer").append($(str));
-      $("footer").show();
+                $("footer").show().css("display", "inline");
       $("#linknext").k_enable();
   }
   else{
 
-    $("footer").show();
-  }
-},
-AppendCss:function(){
-    if(isIE11version){
-        $(".hintDiv").css("margin-left","383px")
-        $(".hintlink").css("background-color","white") 
-        $(".hintlinkspan").css("margin-left","-6px")
-        $(".closehintlink").css("background-color","white")  
-    }
-    if(isAndroid || iOS){
-         $("#footer-navigation ").css("display","");
-         if(isAndroid) 
-             $("#updateTimer").css("top","323px");
-    }
-},
-ViewTextEntryInReviewMode: function () {
-    $("input[type='text']").k_disable();
-    var currentPageData = _Navigator.GetCurrentPage();
-    var pageData = _ModuleCommon.GetPageDetailData();
-    if (reviewData != undefined) {
-        for (var i = 0; i < reviewData.length; i++) {
-            var rData = reviewData[i];
-            if (pageData != undefined) {
-                if (pageData.EmbedSettings != undefined) {
-                    for (j = 0; j < pageData.EmbedSettings.length; j++) {
-                        if (rData.objId == pageData.EmbedSettings[j].inputid) {
-                            var txtObj = $("#" + pageData.EmbedSettings[j].reviewid);
-                            for (k = 0; k < rData.textEntry.length; k++) {
-                                var tEntry = rData.textEntry[k].trim();
-                                if (k == 0) {
-                                    if (rData.textEntry[k].trim().toLowerCase() == pageData.answerset[k].trim().toLowerCase()) {
-                                        $("#" + rData.objId).val(rData.textEntry[k]).css({ "color": ColorCodes.green, "font-weight": "bold" });
-                                        $("#acc" + pageData.EmbedSettings[j].reviewid).text("correct value Entered " + rData.textEntry[k]);
-                                        $("#" + rData.objId).attr("aria-hidden","true");
-                                        $("#" + rData.objId).prev("label").attr("aria-hidden","true");
-                                    }
-                                    else {
-                                        $("#" + rData.objId).val(rData.textEntry[k]).css({ "color": ColorCodes.red, "font-weight": "bold" });
-                                        //$("#acc" + pageData.EmbedSettings[j].reviewid).text("incorrect value Entered " + rData.textEntry[k]);
-                                        $("#" + rData.objId).attr("aria-hidden","true");
-                                        $("#" + rData.objId).prev("label").attr("aria-hidden","true");
-                                    }
-                                }
-                                if (k == 1) {
-                                    $("#" + pageData.EmbedSettings[j].reviewid).text(rData.textEntry[k]).css({ "color": ColorCodes.green, "font-weight": "bold" });
-                                    $("#acc" + pageData.EmbedSettings[j].reviewid).text("correct value Entered " + rData.textEntry[k] +" incorrect value entered "+rData.textEntry[k-1]);
-                                    $("#" + pageData.EmbedSettings[j].reviewid).show();
-                                }
-                            }
-                            break;
-                        }
-                    }
-                }
+                $("footer").show().css("display", "inline");
+            }
+        },
+        AppendCss: function () {
+            if (isIE11version) {
+                $(".hintDiv").css("margin-left", "383px")
+
+            }
+            if (isAndroid || iOS) {
+                $("#footer-navigation ").css("display", "");
+
             }
         }
     }
@@ -1279,118 +1241,12 @@ ViewTextEntryInReviewMode: function () {
 }
 })();
 
-function AppendFooter() {
-    debugger;
-    if ($(".levelfooterdiv").length == 0) {
-        var str = '<div class="levelfooterdiv"><div class="navBtn prev" onClick="GoToPrev()" role="button" tabindex = 195 aria-label="Previous"><a href="#"></a></div><div style="display: inline-block;width: 2px;"></div><div class="boxleveldropdown" style="width: 150px;"  role="button" tabindex = 196 aria-label="Scorecard"><span class="leftarrow"></span><ul class="levelmenu"><li class="uparrow" style = "width: 100px; margin-left: -8px;"><span class="menutitle" >Scorecard</span><div class="levelsubMenu" tabindex = 197 role="text">Total Score - <br>Activity Score - </div><a class="menuArrow"></a></div><div style="display: inline-block;width: 2px;"></div><div class="navBtn next" onClick="GoToNext()" role="button" tabindex = 198 aria-label="Next"><a href="#"></a></div></div>';
-        $("#wrapper").append($(str));
-        $(".navBtn.prev").css({
-            "opacity": ".5",
-            "pointer-events": "none"
-        });
-        $(".navBtn.prev").attr("aria-disabled","true")
-    }
-}
 
-function DisplaySubmenu() {
-    if ($(".levelsubMenu").is(":visible")) {
-        $(".levelsubMenu").hide();
-        $('.rightarrow').removeClass('fa-chevron-up').addClass('fa-chevron-right');
-    } else {
-        $(".levelsubMenu").show();
-        $('.rightarrow').removeClass('fa-chevron-right').addClass('fa-chevron-up');
-    }
-}
-var mTreeObj = {
-    Goto: function (pageid) {
-        _Navigator.LoadPage(pageid);
-    },
-    GoToPrev: function () {
-        debugger;
-        try {
-            if ($(".navBtn.prev").css("pointer-events") == "none") {
-                return;
-            }
-            else
-            {
-                _Navigator.Prev();
-                if (_Navigator.GetCurrentPage().nextPageId != undefined && _Navigator.GetCurrentPage().nextPageId != "") {
-                    enableobj($(".navBtn.next"));
-                } else {
-                    disableobj($(".navBtn.next"));
-                }
-                if (_Navigator.GetCurrentPage().PrevPageId != undefined && _Navigator.GetCurrentPage().PrevPageId != "") {
-                     enableobj($(".navBtn.prev"));
-                } else {
-                    disableobj($(".navBtn.prev"));
-                }
-            }
-        } catch (expn) {
-            //menuNodeIndex++;
-            alert(expn.message);
-        }
-    },
-    GoToNext: function () {
-        try {
-            debugger;
-            if ($(".navBtn.next").css("pointer-events") == "none") {
-                return;
-            } 
-            else{
-                _Navigator.Next();
-                    if (_Navigator.GetCurrentPage().nextPageId != undefined && _Navigator.GetCurrentPage().nextPageId != "") {
-                        enableobj($(".navBtn.next"));
-                    } else {
-                        disableobj($(".navBtn.next"));
-                    }
-                    if (_Navigator.GetCurrentPage().prevPageId != undefined &&_Navigator.GetCurrentPage().prevPageId != "") {
-                        enableobj($(".navBtn.prev"));
-                    } else {
-                        disableobj($(".navBtn.prev"));
-                    }
-                }
-            
-        } catch (expn) {
-            //menuNodeIndex--;
-            alert(expn.message);
-        }
-    }
-};
-
-
-
-function disableobj(obj) {
-    obj.css({
-        "opacity": ".5",
-        "pointer-events": "none"
-    });
-    obj.attr("aria-disabled", "true");
-}
-function enableobj(obj) {
-    obj.css({
-        "opacity": "1",
-        "pointer-events": ""
-    });
-    obj.attr("aria-disabled", "false");
-}
 
 
 $(document).ready(function () {
-   _Navigator.Initialize();
-    _Navigator.GetBookmarkData();
-    var bookmarkpage = _Navigator.GetBookMarkPage();
     
-    if(bookmarkpage!=undefined && bookmarkpage!="" )
-    {
-        _Navigator.LoadPage(bookmarkpage)
-    }
-    else
-    {
-        _Navigator.Start();
-    }
-   $('body').attr({ "id": "thebody", "onmousedown": "document.getElementById('thebody').classList.add('no-focus');", "onkeydown": "document.getElementById('thebody').classList.remove('no-focus');" })
+    _Navigator.Initialize();
+    $('body').attr({ "id": "thebody", "onmousedown": "document.getElementById('thebody').classList.add('no-focus');", "onkeydown": "document.getElementById('thebody').classList.remove('no-focus');" })
 });
 
-// $( function() {
-//     $( "#gridcontainer" ).resizable();
-//     } );

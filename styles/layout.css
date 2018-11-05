@@ -85,17 +85,16 @@ div, p, span, input {
 .no-focus .questioninnerwrapper input[type="radio"]:focus + .inputcircle::after {
     outline: none
 }
-#appmenu *:focus, #appmenu *:active {
-    outline: #ff8c00 solid 2px;
+
+#progressdiv:focus,#titleheader:focus,#header1:focus,#div_feedback p:focus,#Questioninfo:focus,#summaryheading:focus,.pageheading:focus,p:focus{ /*for accessibility*/
+    outline: none
 }
 
 .mxwidth {
     max-width: 990px;
 }
 
-.headmargin {
-    /* margin-top: 144px; */
-}
+
 
 #wrapper {
     width: 100%;

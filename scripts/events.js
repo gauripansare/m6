@@ -192,29 +192,40 @@ $(document).on("click","#droppable",function(event){
 });
 
 $(document).on("click", ".hintlink", function (event) {
-    debugger;
+    if ($(this).k_IsDisabled()) return;
+   var open = "open;"
     if ($(this).hasClass("expanded")) {
         $(".hintlink").removeClass("expanded")
         $(".hintlink").attr("aria-expanded", "false")
         $(".hintcontainer").slideUp(100);
         $(".pageheading").focus();
+        open = "close";
     }
     else {
         $(".hintcontainer").slideDown(100, function () {
             $(".hintlink").addClass("expanded");
             $(".hintlink").attr("aria-expanded", "true");
             $(".hintcontainer .hintcontent").find("p:first").attr("tabindex","-1")
-            $(".hintcontainer .hintcontent").find("p:first").focus();
+            if(iOS)
+            {
+                $(".hintcontainer .hintcontent").find("p:first").attr("role","text")
+            }
+            $(".hintcontainer .hintcontent").find("p:first").focus(); 
         });
     }
-
+    if (_Navigator.IsRevel()) {
+        LifeCycleEvents.OnInteraction("Hint button click. Hint " + open)
+    }
+   
 });
 $(document).on("click", ".closehintlink", function (event) {
-
+    if ($(this).k_IsDisabled()) return;
     $(".hintlink").removeClass("expanded")
     $(".hintlink").attr("aria-expanded", "false")
     $(".hintcontainer").slideUp(100,function(){$("h2.pageheading").focus();});
-
+    if (_Navigator.IsRevel()) {
+        LifeCycleEvents.OnInteraction("Hint button click. Hint closed")
+    }
 
 });
 
@@ -321,9 +332,9 @@ $(document).on("change", '#cropSliderContainer .cropSliderValue', function () {
                   }
               }
 });
-$(document).on("touchstart", '#cropSliderContainer .cropSliderValue', function () {
+$(document).on("touchend", '#cropSliderContainer .cropSliderValue', function () {
     debugger;
-    if(iOS || isAndroid){
+    if(iOS){
       var cropwidth = Number($('.cropSliderValue').val());
        var cropheight = 242;
                 if (cropwidth >= 235 && cropwidth <= 295) {
@@ -336,10 +347,37 @@ $(document).on("touchstart", '#cropSliderContainer .cropSliderValue', function (
                     _ModuleCommon.AddCropData(cropwidth, cropheight, false);
                 }
             }
+        
+           else if(isAndroid){
+                cropSlideValue = Number($(this).val());
+                $("#cropSliderContainerResize").css("width", cropSlideValue + "px");
+                console.log("in video event : " + cropSlideValue);
+                var ariaL = Math.round((cropSlideValue / 354) * 100);
+                $('.cropSliderValue').attr({
+                    "aria-label": ariaL + "%"
+                });
+                $('.cropSliderValue').attr("value", cropSlideValue);
+                cust_ShowCropSliderValue(cropSlideValue);
+                var cropwidth = Number($('.cropSliderValue').val());
+                 var cropheight = 242;
+                if (cropwidth >= 235 && cropwidth <= 295) {
+                    //AddCropData(cropwidth, cropheight, true);
+                    _ModuleCommon.CropEnter();
+                }
+                else {
+                    //AddCropData(cropwidth, cropheight, false)
+                    
+                    _ModuleCommon.AddCropData(cropwidth, cropheight, false);
+                }
+            }
+
+            
             });
 function cust_ShowCropSliderValue(_videoSlideValue) {
     $("#cropSliderContainerResize").css("width", _videoSlideValue + "px");
     $("#gridcontainer").css("width", _videoSlideValue + "px");
+     $(".hdr_table").css("width", _videoSlideValue + "px"); 
+     
 }
 
 
@@ -394,39 +432,45 @@ $(window).resize(function () {
 
 
 $(document).on('click', ".activityimg", function (event) {
-    debugger;
-    if ($(".divHotSpot").hasClass("disabled"))
-        return;
+    if ($(this).k_IsDisabled()) return;
     _ModuleCommon.AddEditPropertiesClick(event);
 });
 
 
-
-$(document).on('click', ".start-btn", function (event) {
+$(document).on('click', ".startbtn", function (event) {
+    if ($(this).k_IsDisabled()) return;
     _Navigator.Next();
 });
 $(document).on('click', ".reviewsubmit", function (event) {
+    if ($(this).k_IsDisabled()) return;
     _Navigator.Next();
 });
 $(document).on('mouseover', ".hintlink", function (event) {
+    if ($(this).k_IsDisabled()) return;
     $(".hintlink .hintlinkspan").css({"color":"#b22222","border-bottom":"1px solid #b22222"})
     $(this).find("path").css({"fill":"#b22222"})
 });
 
 $(document).on('mouseout', ".hintlink", function (event) {
- $(".hintlink .hintlinkspan").css({"color":"#047a9c","border-bottom":"1px solid #047a9c"})
- $(this).find("path").css({"fill":"#047a9c"}) 
+    if ($(this).k_IsDisabled()) return;
+    $(".hintlink .hintlinkspan").css({"color":"#047a9c","border-bottom":"1px solid #047a9c"})
+    $(this).find("path").css({"fill":"#047a9c"}) 
 });
 
 $(document).on("change", ".assessmentradio", function (event) {
+    if ($(this).k_IsDisabled()) return;
     if($(this).hasClass("disabled"))
     return;
     $(".assessmentSubmit").k_enable();    
 });
 $(document).on("click", ".assessmentSubmit", function (event) {
+    if ($(this).k_IsDisabled()) return;
+    if (_Navigator.IsRevel()) {
+        LifeCycleEvents.OnSubmit();
+    }
     gRecordData.Questions[currentQuestionIndex].UserSelectedOptionId = $("input[type='radio']:checked").attr("id") ;
     gRecordData.Questions[currentQuestionIndex].IsAnswered = true;
-    _Navigator.SetBookmarkData();
+    _Navigator.GetBookmarkData();
     _Navigator.Next();
 });
 $(document).on("click", "#linkprevious", function (event) {
