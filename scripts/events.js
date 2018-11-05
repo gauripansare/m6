@@ -347,6 +347,7 @@ $(document).on("touchend", '#cropSliderContainer .cropSliderValue', function () 
                     _ModuleCommon.AddCropData(cropwidth, cropheight, false);
                 }
             }
+<<<<<<< HEAD
         
            else if(isAndroid){
                 cropSlideValue = Number($(this).val());
@@ -377,6 +378,19 @@ function cust_ShowCropSliderValue(_videoSlideValue) {
     $("#cropSliderContainerResize").css("width", _videoSlideValue + "px");
     $("#gridcontainer").css("width", _videoSlideValue + "px");
      $(".hdr_table").css("width", _videoSlideValue + "px"); 
+=======
+     });
+
+     
+function cust_ShowCropSliderValue(_videoSlideValue) {
+    $("#cropSliderContainerResize").css("width", _videoSlideValue + "px");
+    // $("#gridcontainer").css("width", _videoSlideValue + "px");
+     $(".hdr_table").css("width", _videoSlideValue + "px"); 
+     if(isAndroid){
+        $(".hdr_table").attr("aria-hidden","true")
+
+     }
+>>>>>>> b6ffa795dbc8ef36ff646d0aece4f6b45f8fe78d
      
 }
 
