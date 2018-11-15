@@ -130,7 +130,7 @@
 }
 
 
-.divHotSpot {
+.divHotSpot,.divHotSpotdbl {
     position: absolute;
     cursor: pointer;
     background: transparent;
@@ -208,7 +208,7 @@ cursor: pointer;
  left:411px;
 cursor: pointer;
 }
-.divHotSpotDbl {
+.divHotSpotdbl {
     position:absolute;
     cursor:pointer;
      background: transparent;
@@ -348,7 +348,7 @@ border:none !important;
         -webkit-box-sizing: border-box;
     }
     
-    .assessmentradio:checked + .inputcircle:before {
+    .assessmentradio:checked + .inpputtext .inputcircle:before {
         content: '';   
         height: 15px;
         width: 15px;
@@ -489,7 +489,7 @@ th, td {
     margin: 5px 0;
 }
 #Summary .inpputtext{
-   /* margin: 0px;*/
+   margin: 0px;
 }
 /*Presenter Mode css start*/
 .presentationModeFooter {

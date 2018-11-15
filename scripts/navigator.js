@@ -482,6 +482,7 @@ return {
     },
     LoadPage: function (pageId, jsonObj) {
              $(".hintcontainer").hide()
+             $(".header-content-dock").css({"visibility":"hidden"});
             if (_Navigator.IsRevel() && _currentPageId !=undefined && _currentPageId !="") {
                LifeCycleEvents.OnUnloadFromPlayer()
             }
@@ -490,6 +491,10 @@ return {
             jsonObj = {};
         }
         _currentPageId = pageId;
+            _currentPageObject = _NData[_currentPageId]
+            if(_currentPageObject.hasActivity == undefined || _currentPageObject.hasActivity == false){
+                this.SetPageStatus(true);
+            }
         this.UpdateProgressBar();
         _currentPageObject = _NData[_currentPageId]
         $("#header-progress").show();
@@ -542,7 +547,7 @@ return {
                                 if (_Navigator.IsPresenterMode()) {
                                     _ModuleCommon.PresenterMode();
                                 }
-                               if(_currentPageObject.pageId == "p2")
+                               if(_currentPageObject.pageId == "p2"){
                                      $("#titleheader").focus();
                                 }
                                 else if (_currentPageId != quizpageid) {                                     if(isAndroid)
@@ -551,10 +556,6 @@ return {
                                     }
                                     else
                                     {
-                                        if(isiPhone)
-                                        {
-                                            $("#progressdiv").attr("role","text")
-                                        }
                                         $("#progressdiv").focus();
                                     }
                                    
@@ -697,7 +698,7 @@ return {
     UpdateProgressBar: function () {
         var progData = this.GetProgressData();
         var lprog_pecent = (progData * 100 / progressLevels[0]).toFixed(0);
-        $(".progressDiv").text("Progress: " + lprog_pecent + "%");
+            $(".progressdiv").text("Progress: " + lprog_pecent + "%");
         $(".progressFg").css("width", lprog_pecent + "%");
 
 
@@ -914,6 +915,9 @@ return {
         GetPackageType: function () {
             return packageType;
         },
+        GetQuizPageId:function(){
+            return quizpageid;
+        }
     };
 })();
 
