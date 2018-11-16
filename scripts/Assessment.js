@@ -264,14 +264,15 @@ var _Assessment = (function () {
 				this.SetCustomarialabelforRadio();
 
 		     }
+			 if (gRecordData.Score == undefined || gRecordData.Score == "") {
+				gRecordData.Score = score;
+			}
+			var perscore = score / parseInt(gRecordData.AssessmentScore) * 100;
+			$("#ScoreSummary").text("Score: " + perscore + "%");
 			if (gRecordData.Status == "Started") {
 				gRecordData.Status = "Completed";
-				gRecordData.Score = score;
-				
 				this.SetScore(perscore);
 			}
-			var perscore = gRecordData.Score / parseInt(gRecordData.AssessmentScore) * 100;	
-				$("#ScoreSummary").text("Score: " + perscore + "%");
 			if(_Navigator.IsPresenterMode())
 			{
 				$("#ScoreSummary").text("Score: 100%");
