@@ -187,6 +187,7 @@ var _ModuleCommon = (function () {
                         var ht1 = appendImage.height();
 
 
+
                         if (ht1 < 597) {
                             ht1 = 597;
                         }
@@ -213,8 +214,8 @@ var _ModuleCommon = (function () {
             }
 
             this.ShowFeedbackReviewMode();
-            $(".divHotspotCommon").addClass("disabled")
-            $(".divHotspotCommon").attr("aria-disabled", "true")
+            $(".divHotspotCommon").k_disable();
+            //$(".divHotspotCommon").attr("aria-disabled", "true")
         },
         InstructorReviewModeForTextEntry: function () {
             $(".EmbededElement").hide();
@@ -227,19 +228,19 @@ var _ModuleCommon = (function () {
                         var tEntry = reviewData.textEntry[i].trim().toLowerCase();
                         if (pageDetailData.EmbedSettings.validatearray.indexOf(tEntry) >= 0) {
                             if (reviewData.isCorrect && i == 0) {
-                                $(".textentryreview1").html("<span class='OpenSansFont' style='color:green;font-weight:bold;font-size: 13px; '>" + reviewData.textEntry[i] + "</span>")
+                                $(".textentryreview1").html("<span class='OpenSansFont greenspan style='font-weight:bold;font-size:13px;'>" + reviewData.textEntry[i] + "</span>")
                                 $(".textentryaccessibility").text("Correct url entered " + reviewData.textEntry[i])
                                 $(".textentryreview1").attr("aria-hidden", "true")
                             }
                             else {
-                                $(".textentryreview2").html("<span class='OpenSansFont'  style='color:green;font-weight:bold;font-size: 13px;padding-left:5px; '>" + reviewData.textEntry[i] + "</span>");
+                                $(".textentryreview2").html("<span class='OpenSansFont greenspan'  style='font-weight:bold;font-size: 13px;padding-left:5px; '>" + reviewData.textEntry[i] + "</span>");
                                 $(".textentryreview2").show();
                                 $(".textentryreview2").attr("aria-hidden", "true")
 
                             }
                         }
                         else {
-                            $(".textentryreview1").html("<span class='OpenSansFont'  style='color:red;font-weight:bold;font-size: 13px; '>" + reviewData.textEntry[i] + "</span>")
+                            $(".textentryreview1").html("<span class='OpenSansFont redspan'  style='font-weight:bold;font-size: 13px; '>" + reviewData.textEntry[i] + "</span>")
                             $(".textentryaccessibility").text("Incorrect url entered " + reviewData.textEntry[0] + " Correct url " + reviewData.textEntry[1])
                             $(".textentryreview1").attr("aria-hidden", "true")
                         }
@@ -332,20 +333,22 @@ var _ModuleCommon = (function () {
             $(".PSDdraggble").draggable({ disabled: true });
             $(".draggableImgPic").addClass("disabled")
             $(".draggableImgPic").attr("aria-disabled", "true")
+            $(".draggableImgPic").attr("aria-label","Picture folder dropped in Beautification folder")
+            $(".draggableImgVideo").attr("aria-label","Video folder dropped in Beautification folder")
             $(".draggableImgVideo").addClass("disabled")
             $(".draggableImgVideo").attr("aria-disabled", "true")
             $("#droppable").addClass("disabled")
             $(".reviewDiv").remove();
+            $(".reviewimage").show();
             var reviewData = this.GetPageReviewData();
             var pageDetailData = this.GetPageDetailData();
             if (reviewData != undefined && reviewData.Positions != undefined && reviewData.Positions.length > 0) {
 
-                for (var i = 0; i < reviewData.Positions.length; i++) {
+                /*for (var i = 0; i < reviewData.Positions.length; i++) {
                     var posObj = reviewData.Positions[i];
                     var appendImage = $(".wrapperimage");
                     var ht1 = appendImage.height();
                     var ht = appendImage.width();
-
                     if (ht1 < 597) {
                         ht1 = 597;
                     }
@@ -356,16 +359,14 @@ var _ModuleCommon = (function () {
                         posObj.posY = posObj.posY - 2;
                     }
                     if (posObj.isCorrect) {
-                        var _div = "<div class='reviewDiv Correct' style='z-index:5;width:39px;height:39px;position:absolute;left:" + posObj.posX + "px;top:" + posObj.posY + "px;'><img src='" + posObj.src + "' style='width:" + posObj.width + "px;height:" + posObj.height + "px;float:left;' /><img src='assets/images/review-correct.png' style='width:39px;height:35px;' /></div>";
+                        var _div = "<div class='reviewDiv Correct' aria-hidden='true' style='z-index:5;width:39px;height:39px;position:absolute;left:" + posObj.posX + "px;top:" + posObj.posY + "px;'><img src='" + posObj.src + "' style='width:" + posObj.width + "px;height:" + posObj.height + "px;float:left;' /><img src='assets/images/review-correct.png' style='width:39px;height:35px;' /></div>";
                         appendImage.append(_div);
 
-
                     } else {
-                        var _divI = "<div class='reviewDiv InCorrect' style='z-index:5;width:39px;height:35px;position:absolute;left:" + posObj.posX + "px;top:" + posObj.posY + "px;'><img src='" + posObj.src + "' style='width:" + posObj.width + "px;height:" + posObj.height + "px;float:left;' /><img src='assets/images/review-incorrect.png' style='width:39px;height:35px;' /></div>";
-
+                        var _divI = "<div class='reviewDiv InCorrect' aria-hidden='true' style='z-index:5;width:39px;height:35px;position:absolute;left:" + posObj.posX + "px;top:" + posObj.posY + "px;'><img src='" + posObj.src + "' style='width:" + posObj.width + "px;height:" + posObj.height + "px;float:left;' /><img src='assets/images/review-incorrect.png' style='width:39px;height:35px;' /></div>";
                         appendImage.append(_divI);
                     }
-                }
+                }*/
 
             }
 
@@ -388,7 +389,7 @@ var _ModuleCommon = (function () {
                 rposX = (event.pageX - posX);
                 rposY = (event.pageY - posY);
             }
-            if (rposX < 0 || rposY < 0) {//gp if module is attmpted using accessibility
+            else if (rposX < 0 || rposY < 0 || rposX == undefined) {//gp if module is attmpted using accessibility
                 rposX = hotspotObj.position().left + 20;
                 rposY = hotspotObj.position().top + 20;
             }
@@ -565,10 +566,10 @@ var _ModuleCommon = (function () {
             if (reviewData != undefined && reviewData.PositionsCrop != undefined) {
                 for (var i = 0; i < reviewData.PositionsCrop.length; i++) {
                     if (reviewData.PositionsCrop[i].isCorrect == true) {
-                        var _div = "<div style='position:absolute;left:214px;top:182px;width:" + reviewData.PositionsCrop[i].width + "px;height:" + reviewData.PositionsCrop[i].height + "px;border-right: 3px dashed green;border-bottom: 3px dashed green;'></div>";
+                        var _div = "<div aria-label='crop position set correctly' style='position:absolute;left:214px;top:182px;width:" + reviewData.PositionsCrop[i].width + "px;height:" + reviewData.PositionsCrop[i].height + "px;border-right: 3px dashed #01662C;border-bottom: 3px dashed green;'></div>";
                     }
                     else {
-                        var _div = "<div style='position:absolute;left:214px;top:182px;width:" + reviewData.PositionsCrop[i].width + "px;height:" + reviewData.PositionsCrop[i].height + "px;border-right: 3px dashed red;border-bottom: 3px dashed red;'></div>";
+                        var _div = "<div aria-label='crop position set incorrectly'  style='position:absolute;left:214px;top:182px;width:" + reviewData.PositionsCrop[i].width + "px;height:" + reviewData.PositionsCrop[i].height + "px;border-right: 3px dashed #B22222;border-bottom: 3px dashed red;'></div>";
                     }
                     appendImage.append(_div);
                 }
@@ -581,11 +582,13 @@ var _ModuleCommon = (function () {
             $(".videoSliderValue").addClass("disabled");
             if (reviewData != undefined && reviewData.PositionsSlide != undefined) {
                 for (var i = 0; i < reviewData.PositionsSlide.length; i++) {
+                    var correct = reviewData.PositionsSlide[i].isCorrect!=undefined && reviewData.PositionsSlide[i].isCorrect ? "correct" :"incorrect";
+                    var arialabel = correct + reviewData.PositionsSlide[i].accessText;
                     if (reviewData.PositionsSlide[i].isCorrect == true) {
-                        div = "<div style='position:absolute;left:" + (reviewData.PositionsSlide[i].slideValue + 200) + "px;top:360px;width:1px;height:13px;border-right: 3px solid green;'></div>";
+                        div = "<div style='position:absolute;left:" + (reviewData.PositionsSlide[i].slideValue + 200) + "px;top:360px;width:1px;height:13px;border-right: 3px solid #01662C;' aria-label='"+ arialabel+"'></div>";
                     }
                     else {
-                        div = "<div style='position:absolute;left:" + (reviewData.PositionsSlide[i].slideValue + 200) + "px;top:360px;width:1px;height:13px;border-right: 3px solid red;'></div>";
+                        div = "<div style='position:absolute;left:" + (reviewData.PositionsSlide[i].slideValue + 200) + "px;top:360px;width:1px;height:13px;border-right: 3px solid #B22222;' aria-label='"+ arialabel+"'></div>";
                     }
                     appendImage.append(div);
                 }
@@ -624,12 +627,12 @@ var _ModuleCommon = (function () {
                             ptop = getPerc(Number(hotspotdata.Hotspots[i].top.replace("px", "").replace("%", "")), orh) + "%";
                         }
 
-                        var eventname = hotspotdata.Hotspots[i].eventname;
+                        var eventname = hotspotdata.Hotspots[i].eventname == undefined ? "" :hotspotdata.Hotspots[i].eventname;
                         if (eventname != undefined && eventname == "dblclick" && !isAndroid && !isIOS) {
-                            htmlForDivHotspotImage += "<button type='button' hsId='" + hsId + "'  id='divHotspots" + i + "_" + hsId + "' class='divHotSpotdbl divHotSpotCommon' style=' width:" + pwdth + ";height:" + phight + ";left:" + pleft + ";top:" + ptop + ";' action='" + hotspotdata.Hotspots[i].action + "' role='button' aria-label='" + accessText + "'/>";
+                            htmlForDivHotspotImage += "<button type='button' hsId='" + hsId + "'  id='divHotspots" + i + "_" + hsId + "' class='divHotSpotdbl divHotSpotCommon' style=' width:" + pwdth + ";height:" + phight + ";left:" + pleft + ";top:" + ptop + ";' action='" + hotspotdata.Hotspots[i].action + "' role='button' aria-label='" + accessText + "' eventname = '"+ eventname+"'/>";
                         }
                         else {
-                            htmlForDivHotspotImage += "<button type='button' hsId='" + hsId + "'  id='divHotspots" + i + "_" + hsId + "' class='divHotSpot divHotSpotCommon' style=' width:" + pwdth + ";height:" + phight + ";left:" + pleft + ";top:" + ptop + ";' action='" + hotspotdata.Hotspots[i].action + "' role='button' aria-label='" + accessText + "'/>";
+                            htmlForDivHotspotImage += "<button type='button' hsId='" + hsId + "'  id='divHotspots" + i + "_" + hsId + "' class='divHotSpot divHotSpotCommon' style=' width:" + pwdth + ";height:" + phight + ";left:" + pleft + ";top:" + ptop + ";' action='" + hotspotdata.Hotspots[i].action + "' role='button' aria-label='" + accessText + "' eventname = '"+ eventname+"'/>";
                         }
                     }
 
@@ -927,7 +930,7 @@ var _ModuleCommon = (function () {
             var found = false;
             var pageReviewData;
             var currentPageData = _Navigator.GetCurrentPage();
-
+            var accesstext = $(".slidervalue").text();
             for (var r = 0; r < reviewData.length; r++) {
                 if (reviewData[r].pageId == currentPageData.pageId) {
                     var sameclick = false;
@@ -938,7 +941,7 @@ var _ModuleCommon = (function () {
                             }
                         }
                         if (!sameclick) {
-                            var position = { slideValue: slideValue, isCorrect: isCorrect };
+                            var position = { slideValue: slideValue, isCorrect: isCorrect,accessText :accesstext };
                             if (reviewData[r].PositionsSlide.length < 2) {
                                 reviewData[r].PositionsSlide.push(position);
                             }
@@ -950,7 +953,7 @@ var _ModuleCommon = (function () {
 
                     }
                     else {
-                        var position = { slideValue: slideValue, isCorrect: isCorrect };
+                        var position = { slideValue: slideValue, isCorrect: isCorrect,accessText :accesstext };
                         reviewData[r].PositionsSlide = [position];
                     }
                     pageReviewData = reviewData[r];
@@ -961,7 +964,7 @@ var _ModuleCommon = (function () {
             if (!found) {
                 var _obj = {};
                 _obj.pageId = gCurrPageObj.PageId;
-                var position = { slideValue: slideValue, isCorrect: isCorrect };
+                var position = { slideValue: slideValue, isCorrect: isCorrect ,accessText :accesstext};
                 _obj.PositionsSlide = [position];
                 pageReviewData = _obj;
                 reviewData.push(_obj);
@@ -1025,9 +1028,7 @@ var _ModuleCommon = (function () {
             this.EnableNext();
         },
         HotspotNext: function () {
-            if (isAndroid) {
-                $("#progressdiv").focus();
-            }
+            
             _Navigator.Next();
         },
         InputNext: function () {
@@ -1207,7 +1208,7 @@ var _ModuleCommon = (function () {
                     var sameclick = false;
                     var posindex = 0;
                     if (reviewData[r].Positions != undefined) {
-                        var position = { posX: posX, posY: posY, isCorrect: true, src: imgObj.attr('src'), width: imgObj.css("width"), height: imgObj.css("height") };
+                        var position = { posX: posX, posY: posY, isCorrect: true, src: imgObj.find("img").attr('src'), width: imgObj.css("width"), height: imgObj.css("height") };
                         if (reviewData[r].Positions.length < 3) {
                             reviewData[r].Positions.push(position);
                         }
@@ -1222,7 +1223,7 @@ var _ModuleCommon = (function () {
             if (!found) {
                 var _obj = {};
                 _obj.pageId = currentPageData.pageId;
-                var position = { posX: posX, posY: posY, isCorrect: true, src: imgObj.attr('src'), width: imgObj.css("width"), height: imgObj.css("height") };
+                var position = { posX: posX, posY: posY, isCorrect: true, src: imgObj.find("img").attr('src'), width: imgObj.css("width"), height: imgObj.css("height") };
                 _obj.Positions = [position]
                 reviewData.push(_obj);
 
@@ -1246,7 +1247,7 @@ var _ModuleCommon = (function () {
         },
         AppendFooter: function () {
             if ($(".presentationModeFooter").length == 0) {
-                //var str = '<div class="levelfooterdiv"><div class="navBtn prev" onClick="_Navigator.Prev()" role="button" tabindex = 195 aria-label="Previous"><a id="prev_arrow" href="#"></a></div><div style="display: inline-block;width: 2px;"></div><div class="boxleveldropdown" style="width: 150px;"  role="button" tabindex = 196 aria-label="Scorecard"><span class="leftarrow"></span><ul class="levelmenu"><li class="uparrow" style = "width: 100px; margin-left: -8px;"><span class="menutitle" >Scorecard</span><div class="levelsubMenu" tabindex = 197 role="text">Total Score - <br>Activity Score - </div><a class="menuArrow"></a></div><div style="display: inline-block;width: 2px;"></div><div class="navBtn next" onClick="_Navigator.Next()" role="button" tabindex = 198 aria-label="Next"><a id="next_arrow" href="#"></a></div></div>';
+               
                 var str = '<div class="presentationModeFooter">Presentation Mode</div>';
                 $("footer").append($(str));
                 $("footer").show().css("display", "inline");
@@ -1259,7 +1260,7 @@ var _ModuleCommon = (function () {
         },
         AppendCss: function () {
             if (isIE11version) {
-                $(".hintDiv").css("margin-left", "383px")
+                $(".hintDiv").css("width ", "70px")
 
             }
             if (isAndroid || iOS) {

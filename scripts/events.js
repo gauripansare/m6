@@ -3,46 +3,14 @@ var hotspot;
 var touchend = false;
 var touchend1 = false;
 $(document).on("click", ".divHotSpot", function (event) {
-    debugger;
+    
     if ($(this).attr("disabled") || $(this).hasClass("disabled")) {
         event.preventDefault();
         return;
     }
     else {
-        var currentPageData = _Navigator.GetCurrentPage();
-        var pageData = _PData[currentPageData.pageId];
-
-        if (pageData != undefined) {
-
-            var hotspotdata = pageData.ImageHotSpots;
-        }
-        var htmlForDivHotspotImage = "";
-
-        //if (pageData.ImageHotSpots != undefined) {
-        //    for (var i = 0; i < hotspotdata.Hotspots.length; i++) {
-        if (_PData[currentPageData.pageId].ImageHotSpots["Hotspots"][0].eventname == 'noclick')
-            return;
-        else if (hotspotdata.Hotspots.length > 1) {
-            if (_PData[currentPageData.pageId].ImageHotSpots["Hotspots"][1].eventname != 'undefined') {
-                if (_PData[currentPageData.pageId].ImageHotSpots["Hotspots"][1].eventname == 'noclick') {
-                    return;
-                }
-                else {
-                    event.preventDefault();
-                    $(this).k_disable()
-                    if (hotspotclicked || _Navigator.IsAnswered())
-                        return;
-                    $(this).addClass("hotspotclicked")
-                    hotspot = $(this);
-                    setTimeout(function () {
-                        hotspotclicked = false;
-                        _ModuleCommon.HotspotClick(hotspot, event);
-
-                    }, 400)
-                }
-            }
-        }
-
+        if($(this).attr("eventname") !=undefined && $(this).attr("eventname") == "noclick")
+        return;
         else {
             event.preventDefault();
             $(this).k_disable()
@@ -57,8 +25,7 @@ $(document).on("click", ".divHotSpot", function (event) {
             }, 400)
         }
     }
-         //   }
-       // }
+  
 });
 
 
@@ -115,83 +82,56 @@ $(document).on("keyup", ".divHotSpotdbl", function (event) {
     }
 });
 
-  
-$(document).on("click",".ui-draggable",function(event){
-    debugger;
+
+$(document).on("click", ".dragdiv", function (event) {
+    console.log("clicked")
+    
     if ($(this).attr("disabled") || $(this).hasClass("disabled")) {
         event.preventDefault();
         return;
     }
-    else {
-     
- 
-    $(this).css("border", "blue solid 2px");
-    $(this).addClass("selected");
-    $(this).attr("aria-label","selected folder")
-  //  $("#droppable").css('outline','#ff8c00 solid 2px')
+    else {     
+        $(".selected").attr("aria-selected","false")
+        $(".selected").css("border","none")
+        $(".selected").removeClass("selected")
+      
+        $(this).addClass("selected");
+        $(this).css("border", "#ff8c00 solid 2px");
+        $(this).attr({"aria-selected":"true"})
+        $("#droppable").css('outline','#ff8c00 auto 2px')
     }
- 
+
 });
-$(document).on("click","#droppable",function(event){
-    debugger;
+$(document).on("click touchstart", "#droppable", function (event) {
+    
     var count = 0;
-    var ariaTxt='';
-               $('.selected').addClass("dropped");
-               $('dropped').removeClass('selected');
-               $('.dropped').css("border","none")
-               //$(this).addClass('droppable')
-                 $('.dropped').each(function(){
+    var ariaTxt = '';
+    $('.selected').addClass("dropped");
+    $('dropped').removeClass('selected');
+    $('.dropped').css("border", "none")
+    //$(this).addClass('droppable')
+    $('.dropped').each(function () {
 
-                    if(!($(this).attr("aria-live") != undefined))
-                    {
+        if (!($(this).attr("aria-live") != undefined)) {
+            $(this).attr({ "aria-live": "assertive", "aria-label": $(this).attr("aria-label") + " dropped in Beautification folder droppable", 'aria-disabled': 'true' })
+        }
+    })
+    $(".dropped").draggable({ disabled: true })
 
-                        $(this).attr({"aria-live":"assertive","aria-label":$(this).attr("alt")+" dropped in Beautification folder droppable",'aria-disabled':'true'})
-                    }
-                 })
-                
-                
-                      var droppable = $(this);
-                      var draggable = $('.dropped');
-                       $(".dropped").draggable({ disabled: true })      
-                    //    if( $(".dropped").length == 1)
-                    //    {
-                    //     $(".PSDdraggble").each(function(){
-                    //         debugger;
-                    //         if(!$(this).hasClass("dropped"))
-                    //         {
+    $(".dropped").k_disable();
+    if ($(".draggableImgVideo.dropped").length == 1 && count == 0) {
+        _ModuleCommon.InputDND($(".draggableImgVideo"), event);
+        count++;
+    }
+    else {
+        _ModuleCommon.InputDND($(".draggableImgPic"), event)
+    }
 
-                    //             $(this).focus();
-                    //             $(this).css('outline',' #ff8c00 solid 2px');
-                    //             $("#droppable").css('outline','none')
-                    //          }
-                            
-                    //         });
-                    //    }  
-                              
-                                 
-                       if ($(".draggableImgVideo.dropped").length == 1 && count == 0) {
-                           _ModuleCommon.InputDND($(".draggableImgVideo"), event);
-                           count++;
-                       }
-                       else {
-                           _ModuleCommon.InputDND($(".draggableImgPic"), event)
-                       }
 
-                    //    if($('.dropped').length == 2){
-                         
-                    //        $('.dropped').each(function(){
-                    //         ariaTxt = $(this).attr('aria-label');
-                    //         ariaTxt = ariaTxt.split('dropped');
-                    //         $(this).attr({'aria-label':ariaTxt[0]})
 
-                    //        })
-                       
-                    //    }
-                
- 
 });
 $(document).on("click", ".hintdoc", function (event) {
-    debugger;
+ 
     if ($(this).hasClass("hintdoc")) {
         if ($(this).hasClass("expanded")) {
             $(this).removeClass("expanded")
@@ -205,7 +145,7 @@ $(document).on("click", ".hintdoc", function (event) {
 
         }
     }
-    if(touchend1){
+    if (touchend1) {
         $(this).mouseout();
         touchend1 = false;
     }
@@ -216,7 +156,7 @@ $(document).on("click", ".hintdoc", function (event) {
 
 $(document).on("click", ".hintlink", function (event) {
     if ($(this).k_IsDisabled()) return;
-   var open = "open;"
+    var open = "open;"
     if ($(this).hasClass("expanded")) {
         $(this).removeClass("expanded")
         $(this).attr("aria-expanded", "false")
@@ -233,13 +173,13 @@ $(document).on("click", ".hintlink", function (event) {
             if (iOS) {
                 $(".hintcontainer .hintcontent").find("p:first").attr("role", "text")
             }
-            $(".hintcontainer .hintcontent").find("p:first").focus(); 
+            $(".hintcontainer .hintcontent").find("p:first").focus();
         });
     }
     if (_Navigator.IsRevel()) {
         LifeCycleEvents.OnInteraction("Hint button click. Hint " + open)
     }
-     if(touchend){
+    if (touchend) {
         $(this).mouseout();
         touchend = false;
     }
@@ -250,7 +190,7 @@ $(document).on("click", ".closehintdoc", function (event) {
     if ($(this).k_IsDisabled()) return;
     $(".hintdoc").removeClass("expanded")
     $(".hintcontainerdoc").hide();
-   
+
     if (_Navigator.IsRevel()) {
         LifeCycleEvents.OnInteraction("Hint button click. Hint closed")
     }
@@ -262,11 +202,26 @@ $(document).on("click", ".closehintlink", function (event) {
     if ($(this).k_IsDisabled()) return;
     $(".hintlink").removeClass("expanded")
     $(".hintlink").attr("aria-expanded", "false")
-    $(".hintcontainer").slideUp(100,function(){$("h2.pageheading").focus();});
+    $(".hintcontainer").slideUp(100, function () { $("h2.pageheading").focus(); });
     if (_Navigator.IsRevel()) {
         LifeCycleEvents.OnInteraction("Hint button click. Hint closed")
     }
 
+});
+$(document).on("keydown", "input.EmbededElement", function (event) {
+    if ($(this).k_IsDisabled()) return;
+    if ($(this).attr("disabled") || $(this).hasClass("disabled")) {
+        event.preventDefault();
+        return;
+    }
+    if (window.event) {
+        key = window.event.keyCode;
+    } else if (event) {
+        key = event.keyCode;
+    }
+    if (key == 13) {
+        _ModuleCommon.InputEnter($(this));
+    }
 });
 
 $(document).on('touchstart', ".hintlink", function (event) {
@@ -314,8 +269,8 @@ function mouseleave(_ths) {
     _ths.find("path").css({ "fill": "#047a9c" })
 }
 
-$(document).on("keydown", "#droppable", function (event) {
-    debugger;
+$(document).on("keyup", "#droppable", function (event) {
+   
     if ($(this).attr("disabled") || $(this).hasClass("disabled")) {
         event.preventDefault();
         return;
@@ -326,26 +281,12 @@ $(document).on("keydown", "#droppable", function (event) {
         key = event.keyCode;
     }
     if (key == 13) {
-       $("#droppable").click();
+        $("#droppable").click();
     }
 });
-$(document).on("keydown", "#droppable", function (event) {
-    debugger;
-    if ($(this).attr("disabled") || $(this).hasClass("disabled")) {
-        event.preventDefault();
-        return;
-    }
-    if (window.event) {
-        key = window.event.keyCode;
-    } else if (event) {
-        key = event.keyCode;
-    }
-    if (key == 13) {
-       $("#droppable").click();
-    }
-});
-$(document).on("keydown", ".ui-draggable", function (event) {
-    debugger;
+
+$(document).on("keyup", ".dragdiv", function (event) {
+   
     if ($(this).attr("disabled") || $(this).hasClass("disabled")) {
         event.preventDefault();
         return;
@@ -361,8 +302,8 @@ $(document).on("keydown", ".ui-draggable", function (event) {
 });
 
 $(document).keydown(function (event) {
-    debugger;
-    if ($(this).attr("disabled") || $(this).hasClass("disabled") ) {
+  
+    if ($(this).attr("disabled") || $(this).hasClass("disabled")) {
         event.preventDefault();
         return;
     }
@@ -372,7 +313,7 @@ $(document).keydown(function (event) {
         key = event.keyCode;
     }
     if (key == 13) {
-        if ($("input.EmbededElement").length > 0 || $(".ui-draggable").length > 0 || $("#droppable").length ) {
+        if ($("input.EmbededElement").length > 0 || $(".ui-draggable").length > 0 || $("#droppable").length) {
             //do nothuning
         }
         else {
@@ -383,17 +324,35 @@ $(document).keydown(function (event) {
 
 
 
-$(document).on("keyup",'#cropSliderContainer .cropSliderValue', function () {
+$(document).on("keyup", '#cropSliderContainer .cropSliderValue', function () {
     cropSlideValue = Number($(this).val());
     $("#cropSliderContainerResize").css("width", cropSlideValue + "px");
     console.log("in crop keyup : " + cropSlideValue);
-    $('.cropSliderValue').removeAttr("value");    
+    $('.cropSliderValue').removeAttr("value");
     $('.cropSliderValue').attr("value", cropSlideValue);
     cust_ShowCropSliderValue(cropSlideValue);
+    $(".slidervalue").html("")
+    if(iOS && $(".slidervalue").attr("role")==undefined){
+        $(this).attr("role","alert")
+    }
+    
+    var cropwidth = Number($('.cropSliderValue').val());
+    if (cropwidth > 240 && cropwidth < 295) {
+        
+        $(".slidervalue").text("Person is out of frame")
+    }
+    else if(cropwidth >=295)
+    {
+        $(".slidervalue").text("Person is still in frame")
+    }
+    else if(cropwidth <=240){
+        $(".slidervalue").text("Cropped more than required")
+    }
+    
 });
 
 $(document).on("change", '#cropSliderContainer .cropSliderValue', function () {
-    debugger;
+ 
     cropSlideValue = Number($(this).val());
     $("#cropSliderContainerResize").css("width", cropSlideValue + "px");
     console.log("in video event : " + cropSlideValue);
@@ -403,73 +362,90 @@ $(document).on("change", '#cropSliderContainer .cropSliderValue', function () {
     });
     $('.cropSliderValue').attr("value", cropSlideValue);
     cust_ShowCropSliderValue(cropSlideValue);
-    if(iOS){
+    if (iOS || isAndroid) {
         var cropwidth = Number($('.cropSliderValue').val());
-         var cropheight = 242;
-                  if (cropwidth >= 235 && cropwidth <= 295) {
-                      //AddCropData(cropwidth, cropheight, true);
-                      _ModuleCommon.CropEnter();
-                  }
-                  else {
-                      //AddCropData(cropwidth, cropheight, false)
-                      
-                      _ModuleCommon.AddCropData(cropwidth, cropheight, false);
-                  }
-              }
+        var cropheight = 242;
+        if (cropwidth >= 235 && cropwidth <= 295) {
+            //AddCropData(cropwidth, cropheight, true);
+            setTimeout(function(){
+            _ModuleCommon.CropEnter();
+        },2000)
+        }
+        else {
+            //AddCropData(cropwidth, cropheight, false)
+
+            _ModuleCommon.AddCropData(cropwidth, cropheight, false);
+        }
+    }
+    if(iOS && $(".slidervalue").attr("role")==undefined){
+        $(this).attr("role","alert")
+    }
+    
+    var cropwidth = Number($('.cropSliderValue').val());
+    if (cropwidth > 240 && cropwidth < 295) {
+        
+        $(".slidervalue").text("Person is out of frame")
+    }
+    else if(cropwidth >=295)
+    {
+        $(".slidervalue").text("Person is still in frame")
+    }
+    else if(cropwidth <=240){
+        $(".slidervalue").text("Cropped more than required")
+    }
+   
 });
 $(document).on("touchend", '#cropSliderContainer .cropSliderValue', function () {
-    debugger;
-    if(iOS){
-      var cropwidth = Number($('.cropSliderValue').val());
-       var cropheight = 242;
-                if (cropwidth >= 235 && cropwidth <= 295) {
-                    //AddCropData(cropwidth, cropheight, true);
-                    _ModuleCommon.CropEnter();
-                }
-                else {
-                    //AddCropData(cropwidth, cropheight, false)
-                    
-                    _ModuleCommon.AddCropData(cropwidth, cropheight, false);
-                }
-            }
-        
-           else if(isAndroid){
-                cropSlideValue = Number($(this).val());
-                $("#cropSliderContainerResize").css("width", cropSlideValue + "px");
-                console.log("in video event : " + cropSlideValue);
-                var ariaL = Math.round((cropSlideValue / 354) * 100);
-                $('.cropSliderValue').attr({
-                    "aria-label": ariaL + "%"
-                });
-                $('.cropSliderValue').attr("value", cropSlideValue);
-                cust_ShowCropSliderValue(cropSlideValue);
-                var cropwidth = Number($('.cropSliderValue').val());
-                 var cropheight = 242;
-                if (cropwidth >= 235 && cropwidth <= 295) {
-                    //AddCropData(cropwidth, cropheight, true);
-                    _ModuleCommon.CropEnter();
-                }
-                else {
-                    //AddCropData(cropwidth, cropheight, false)
-                    
-                    _ModuleCommon.AddCropData(cropwidth, cropheight, false);
-                }
-            }
+  
+    if (iOS) {
+        var cropwidth = Number($('.cropSliderValue').val());
+        var cropheight = 242;
+        if (cropwidth >= 235 && cropwidth <= 295) {
+            //AddCropData(cropwidth, cropheight, true);
+            _ModuleCommon.CropEnter();
+        }
+        else {
+            //AddCropData(cropwidth, cropheight, false)
+            _ModuleCommon.AddCropData(cropwidth, cropheight, false);
+        }
+    }
 
-            
-            });
+    else if (isAndroid) {
+        cropSlideValue = Number($(this).val());
+        $("#cropSliderContainerResize").css("width", cropSlideValue + "px");
+        console.log("in video event : " + cropSlideValue);
+        var ariaL = Math.round((cropSlideValue / 354) * 100);
+        $('.cropSliderValue').attr({
+            "aria-label": ariaL + "%"
+        });
+        $('.cropSliderValue').attr("value", cropSlideValue);
+        cust_ShowCropSliderValue(cropSlideValue);
+        var cropwidth = Number($('.cropSliderValue').val());
+        var cropheight = 242;
+        if (cropwidth >= 235 && cropwidth <= 295) {
+            //AddCropData(cropwidth, cropheight, true);
+            _ModuleCommon.CropEnter();
+        }
+        else {
+            //AddCropData(cropwidth, cropheight, false)
+            _ModuleCommon.AddCropData(cropwidth, cropheight, false);
+        }
+    }
+
+
+});
 function cust_ShowCropSliderValue(_videoSlideValue) {
     $("#cropSliderContainerResize").css("width", _videoSlideValue + "px");
     $("#gridcontainer").css("width", _videoSlideValue + "px");
-     $(".hdr_table").css("width", _videoSlideValue + "px"); 
-     
+    $(".hdr_table").css("width", _videoSlideValue + "px");
+
 }
 
 
-$(document).on('keyup','#videoSliderContainer .videoSliderValue', function () {
-   $(" #videoSliderContainer .videoSliderValue").focus();
+$(document).on('keyup', '#videoSliderContainer .videoSliderValue', function () {
+    $(" #videoSliderContainer .videoSliderValue").focus();
     videoSlideValue = Number($(this).val());
-   
+
     var hours = Math.floor(videoSlideValue / 60);
     var minutes = videoSlideValue - (hours * 60);
     $('.videoSliderValue').removeAttr("value");
@@ -477,7 +453,7 @@ $(document).on('keyup','#videoSliderContainer .videoSliderValue', function () {
     if ((minutes + "").length == 1) minutes = '0' + minutes;
 
     $("#updateTimer").find("p").html("00:" + hours + "." + minutes);
-   
+
     $('.videoSliderValue').attr("value", videoSlideValue);
     cust_ShowVideoSliderValue(videoSlideValue);
 });
@@ -486,7 +462,7 @@ $(document).on('change', '#videoSliderContainer .videoSliderValue', function () 
     $("#divHotspots0_1").show();
     $("#divHotspots0_1").removeClass("hotspotclicked disabled")
     videoSlideValue = Number($(this).val());
-   
+
     var hours = Math.floor(videoSlideValue / 60);
     var minutes = videoSlideValue - (hours * 60);
     $('.videoSliderValue').removeAttr("value");
@@ -494,9 +470,13 @@ $(document).on('change', '#videoSliderContainer .videoSliderValue', function () 
     if ((minutes + "").length == 1) minutes = '0' + minutes;
 
     $("#updateTimer").find("p").html("00:" + hours + "." + minutes);
-    
+    if(iOS && $(".slidervalue").attr("role")==undefined){
+        $(this).attr("role","alert")
+    }
+    $(".slidervalue").text("current end point for video is set at "+hours + " hours " +minutes +" minutes" )
     $('.videoSliderValue').attr("value", videoSlideValue);
     cust_ShowVideoSliderValue(videoSlideValue);
+    
 });
 
 function cust_ShowVideoSliderValue(_videoSlideValue) {
@@ -513,11 +493,8 @@ function cust_ShowVideoSliderValue(_videoSlideValue) {
 $(window).resize(function () {
     _ModuleCommon.OrientationChange();
 });
-
-
-
 $(document).on('click', ".activityimg", function (event) {
-    if ($(".divHotSpot").hasClass("disabled") || $(".divHotSpot").length == 0)
+    if ($(".divHotSpot").hasClass("disabled") || $(".divHotSpot").length == 0 || $(".input.EmbededElement").length > 0)
         return;
     _ModuleCommon.AddEditPropertiesClick(event);
 });
@@ -526,27 +503,25 @@ $(document).on('click', ".activityimg", function (event) {
 $(document).on('click', ".startbtn", function (event) {
     if ($(this).k_IsDisabled()) return;
     _Navigator.Next();
+    //_Navigator.LoadPage("p30")
 });
 $(document).on('click', ".reviewsubmit", function (event) {
     if ($(this).k_IsDisabled()) return;
     _Navigator.Next();
 });
 
-
-
-
 $(document).on("change", ".assessmentradio", function (event) {
     if ($(this).k_IsDisabled()) return;
-    if($(this).hasClass("disabled"))
-    return;
-    $(".assessmentSubmit").k_enable();    
+    if ($(this).hasClass("disabled"))
+        return;
+    $(".assessmentSubmit").k_enable();
 });
 $(document).on("click", ".assessmentSubmit", function (event) {
     if ($(this).k_IsDisabled()) return;
     if (_Navigator.IsRevel()) {
         LifeCycleEvents.OnSubmit();
     }
-    gRecordData.Questions[currentQuestionIndex].UserSelectedOptionId = $("input[type='radio']:checked").attr("id") ;
+    gRecordData.Questions[currentQuestionIndex].UserSelectedOptionId = $("input[type='radio']:checked").attr("id");
     gRecordData.Questions[currentQuestionIndex].IsAnswered = true;
     _Navigator.GetBookmarkData();
     _Navigator.Next();
@@ -556,14 +531,18 @@ $(document).on("click", "#linkprevious", function (event) {
     _Navigator.Prev();
 });
 $(document).on('click', ".inputcircle", function (event) {
-   
-    $(this).next(".inpputtext").trigger( "click" );
+
+    $(this).next(".inpputtext").trigger("click");
 })
 $(document).on("click", "#linknext", function (event) {
-    if ($(this).k_IsDisabled()) return;    
+    if ($(this).k_IsDisabled()) return;
     _Navigator.Next();
 });
 
+$(document).on('click', ".inputcircle", function (event) {
+    if ($(this).k_IsDisabled()) return;
+    $(this).next(".inpputtext").trigger("click");
+});
 window.onload = function () {
     _ScormUtility.Init();
 }
@@ -574,7 +553,7 @@ window.onunload = function () {
 window.addEventListener("scroll", function () {
 
     var currPage = _Navigator.GetCurrentPage();
-    if (currPage.pageId == "p1" )
+    if (currPage.pageId == "p1")
         return;
     var target = $(".header-content-dock");
 
@@ -583,17 +562,15 @@ window.addEventListener("scroll", function () {
         target.css({ "visibility": "visible", "top": "0px", "width": width + "px" })
     }
     else if (window.pageYOffset < $("#header-content").height() - 10) {
-        target.css({ "visibility": "hidden", "top": "-80px"})
+        target.css({ "visibility": "hidden", "top": "-80px" })
         $(".hintcontainerdoc").hide();
         $(".hintdoc").removeClass("expanded")
 
     }
-    if (_Navigator.GetCurrentPage().pageId == _Navigator.GetQuizPageId() || currPage.hinturl ==undefined || currPage.hinturl == "" )
-    {
+    if (_Navigator.GetCurrentPage().pageId == _Navigator.GetQuizPageId() || currPage.hinturl == undefined || currPage.hinturl == "") {
         $(".hintdoc").parent().hide();
     }
-    else
-    {
+    else {
         $(".hintdoc").parent().show();
     }
 

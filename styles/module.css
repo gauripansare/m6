@@ -86,7 +86,15 @@
         color: #F9FF00;
     }
 /*Question Css*/
+.greenspan {
+    color: #01662C;
+    font-weight: bold;
+}
 
+.redspan {
+    color: #B22222;
+    font-weight: bold;
+}
 .wrapperimage {
     width: 798px;
     height: auto;
@@ -477,7 +485,7 @@ table, th, td {
     table-layout: auto;
 }
 th, td {
-    padding: 15px;
+    padding: 36px;
     text-align: left;
 }
 
@@ -505,3 +513,12 @@ th, td {
     opacity: 0;
 }
 /*presenter Mode css End*/
+
+.reviewimage{
+    position: absolute;
+    float: left;
+    left: -20px;
+}
+.disabled.draggableImgPic , .disabled.draggableImgVideo  {
+    opacity: 0.8;
+}
