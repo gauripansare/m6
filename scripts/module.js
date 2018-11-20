@@ -91,7 +91,7 @@ var _ModuleCommon = (function () {
         },
 
         InitiateDNDelements: function () {
-            debugger;
+           
             var count = 0;
             $(".draggableImgPic").addClass("PSDdraggble")
             $(".draggableImgVideo").addClass("PSDdraggble")
@@ -142,7 +142,6 @@ var _ModuleCommon = (function () {
             $("#droppable").droppable({
                 accept: ".PSDdraggble",
                 drop: function (event, ui) {
-                    debugger;
                     ui.draggable.addClass("dropped");
 
                     var droppable = $(this);
@@ -252,11 +251,9 @@ var _ModuleCommon = (function () {
             }
         },
         DisplayUserReviewMode: function () {
-            debugger;
             $(".reviewDiv").remove();
             var pageDetailData = this.GetPageDetailData();
             if (pageDetailData != undefined && pageDetailData.EmbedSettings != undefined) {
-                debugger;
                 this.DisplayReviewModeForTextEntry();
             }
             if (pageDetailData != undefined && _Navigator.IsDND()) {
@@ -329,7 +326,6 @@ var _ModuleCommon = (function () {
             }
         },
         DisplayDrangAndDropInReviewMode: function () {
-            debugger;
             $(".PSDdraggble").draggable({ disabled: true });
             $(".draggableImgPic").addClass("disabled")
             $(".draggableImgPic").attr("aria-disabled", "true")
@@ -389,7 +385,7 @@ var _ModuleCommon = (function () {
                 rposX = (event.pageX - posX);
                 rposY = (event.pageY - posY);
             }
-            else if (rposX < 0 || rposY < 0 || rposX == undefined) {//gp if module is attmpted using accessibility
+            if (rposX < 0 || rposY < 0 || rposX == undefined) {//gp if module is attmpted using accessibility
                 rposX = hotspotObj.position().left + 20;
                 rposY = hotspotObj.position().top + 20;
             }
@@ -485,7 +481,6 @@ var _ModuleCommon = (function () {
                                 reviewData[r].Positions.push(position);
                             }
                             else {
-                                debugger;
                                 if (currentPageData.pageId == "p25") { } else {
                                     reviewData[r].Positions.splice(0, 1);
                                 }
@@ -523,7 +518,6 @@ var _ModuleCommon = (function () {
             }
 
             if (_Navigator.IsAnswered()) {
-                debugger;
                 this.DisplayInstructorReviewMode();
 
             }
@@ -546,7 +540,6 @@ var _ModuleCommon = (function () {
 
             }
             if (_Navigator.IsRedEyed()) {
-                debugger;
                 if (isredEye1Clicked == false) {
                     $(".Redeyeleft").hide();
                 }
@@ -598,8 +591,6 @@ var _ModuleCommon = (function () {
         },
 
         LoadHotSpot: function () {
-            debugger;
-
             var currentPageData = _Navigator.GetCurrentPage();
             var pageData = _PData[currentPageData.pageId];
             var aceessTextforImg = currentPageData.accessText;
@@ -642,7 +633,6 @@ var _ModuleCommon = (function () {
             }
         },
         PresenterMode: function () {
-            debugger;
             var currentPageData = _Navigator.GetCurrentPage();
             var pageData = this.GetPageDetailData();
             isCorrect = true;
@@ -734,7 +724,6 @@ var _ModuleCommon = (function () {
             _Navigator.UpdateProgressBar();
         },
         ApplycontainerWidth: function () {
-            debugger;
             var innerWidth = $(window).width();
 
             $("#header-title img").attr("src", "assets/images/logo.png")
@@ -926,7 +915,6 @@ var _ModuleCommon = (function () {
         },
 
         AddSliderData: function (slideValue, isCorrect) {
-            debugger;
             var found = false;
             var pageReviewData;
             var currentPageData = _Navigator.GetCurrentPage();
@@ -981,7 +969,6 @@ var _ModuleCommon = (function () {
             }
         },
         InputFeedback: function () {
-            debugger;
             var pageData = this.GetPageDetailData();
             var fdbkUrl = _Settings.dataRoot + "feedbackdata/" + pageData.EmbedSettings.feedbackurl;
             $("#div_feedback").show();
@@ -1000,7 +987,6 @@ var _ModuleCommon = (function () {
             this.EnableNext();
         },
         HotspotFeedback: function (_hotspot) {
-            debugger;
             var pageData = this.GetPageDetailData();
             var url = "";
             if (pageData.ImageHotSpots != undefined) {

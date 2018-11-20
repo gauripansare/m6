@@ -552,7 +552,7 @@ var _Navigator = (function () {
                                     $("#titleheader").focus();
                                 }
 
-                                if ((isiPhone || isAndroid) && _NData[_currentPageId].isLoaded != undefined && _NData[_currentPageId].isLoaded == true) {//iphone android on previous focus is set to header
+                                else if ((isiPhone || isAndroid) && _NData[_currentPageId].isLoaded != undefined && _NData[_currentPageId].isLoaded == true) {//iphone android on previous focus is set to header
                                     $("h2").focus();
                                 }
                                 else {

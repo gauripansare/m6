@@ -272,7 +272,14 @@ var _Assessment = (function () {
 				
 			}
 			_Navigator.UpdateProgressBar();
+			if(isChrome)
+			{
+				$("h2").focus();
+			}
+			else
+			{
 			$("#progressdiv").focus();
+			}
 		},
 		SetScore: function (perscore) {
 			if (_Navigator.IsScorm()) {
