@@ -473,7 +473,7 @@ $(document).on('change', '#videoSliderContainer .videoSliderValue', function () 
     if(iOS && $(".slidervalue").attr("role")==undefined){
         $(this).attr("role","alert")
     }
-    $(".slidervalue").text("current end point for video is set at "+hours + " hours " +minutes +" minutes" )
+    $(".slidervalue").text("current end point for video set at "+hours + " hours " +minutes +" minutes" )
     $('.videoSliderValue').attr("value", videoSlideValue);
     cust_ShowVideoSliderValue(videoSlideValue);
     

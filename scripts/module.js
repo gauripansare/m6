@@ -573,9 +573,10 @@ var _ModuleCommon = (function () {
             var reviewData = this.GetPageReviewData();
             var div;
             $(".videoSliderValue").addClass("disabled");
+            $(".videoSliderValue").k_disable();
             if (reviewData != undefined && reviewData.PositionsSlide != undefined) {
                 for (var i = 0; i < reviewData.PositionsSlide.length; i++) {
-                    var correct = reviewData.PositionsSlide[i].isCorrect!=undefined && reviewData.PositionsSlide[i].isCorrect ? "correct" :"incorrect";
+                    var correct = reviewData.PositionsSlide[i].isCorrect!=undefined && reviewData.PositionsSlide[i].isCorrect ? "correct " :"incorrect ";
                     var arialabel = correct + reviewData.PositionsSlide[i].accessText;
                     if (reviewData.PositionsSlide[i].isCorrect == true) {
                         div = "<div style='position:absolute;left:" + (reviewData.PositionsSlide[i].slideValue + 200) + "px;top:360px;width:1px;height:13px;border-right: 3px solid #01662C;' aria-label='"+ arialabel+"'></div>";
@@ -918,7 +919,7 @@ var _ModuleCommon = (function () {
             var found = false;
             var pageReviewData;
             var currentPageData = _Navigator.GetCurrentPage();
-            var accesstext = $(".slidervalue").text();
+            var accesstext = $(".slidervalue").text().replace("current","");
             for (var r = 0; r < reviewData.length; r++) {
                 if (reviewData[r].pageId == currentPageData.pageId) {
                     var sameclick = false;
