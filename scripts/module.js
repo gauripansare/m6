@@ -213,8 +213,10 @@ var _ModuleCommon = (function () {
             }
 
             this.ShowFeedbackReviewMode();
-            $(".divHotspotCommon").k_disable();
-            //$(".divHotspotCommon").attr("aria-disabled", "true")
+            $(".divHotSpotCommon").each(function(){$(this).k_disable()});
+            // $(".divHotspotCommon").attr("aria-disabled", "true");
+            // $(".divHotspotCommon").addClass("disabled")
+            // $(".divHotspotCommon").attr("disabled", "true");
         },
         InstructorReviewModeForTextEntry: function () {
             $(".EmbededElement").hide();
@@ -385,7 +387,7 @@ var _ModuleCommon = (function () {
                 rposX = (event.pageX - posX);
                 rposY = (event.pageY - posY);
             }
-            if (rposX < 0 || rposY < 0 || rposX == undefined) {//gp if module is attmpted using accessibility
+            if (rposX < 0 || rposY < 0 || rposX == undefined || rposY == undefined) {//gp if module is attmpted using accessibility
                 rposX = hotspotObj.position().left + 20;
                 rposY = hotspotObj.position().top + 20;
             }
@@ -639,7 +641,7 @@ var _ModuleCommon = (function () {
             isCorrect = true;
             var getArray = [];
             var getidArray = [];
-            $(".divHotspotCommon").each(function () {
+            $(".divHotSpotCommon").each(function () {
 
                 getArray.push($(this).attr("hsid"))
 
@@ -717,7 +719,7 @@ var _ModuleCommon = (function () {
                 }
             }
 
-            $(".divHotspotCommon").addClass("disabled");
+            $(".divHotSpotCommon").k_disable();
 
 
             $("#linknext").k_enable();
@@ -776,10 +778,12 @@ var _ModuleCommon = (function () {
             switch (action) {
                 case "next":
                     _Navigator.SetPageStatus(true);
+                    _Navigator.GetBookmarkData();
                     this.HotspotNext();
                     break;
                 case "feedback":
                     _Navigator.SetPageStatus(true);
+                    _Navigator.GetBookmarkData();
                     this.HotspotFeedback(_hotspot);
                     break;
                 case "checkinput":
@@ -809,6 +813,7 @@ var _ModuleCommon = (function () {
                     $("#divHotspots2_3").hide();
                     if (redEyeClickCount == 2) {
                         _Navigator.SetPageStatus(true);
+                        _Navigator.GetBookmarkData();
                         this.HotspotNext();
                     }
                     else {
@@ -828,6 +833,7 @@ var _ModuleCommon = (function () {
                     $("#divHotspots2_3").hide();
                     if (redEyeClickCount == 2) {
                         _Navigator.SetPageStatus(true);
+                        _Navigator.GetBookmarkData();
                         this.HotspotNext();
                     }
                     else {
@@ -855,6 +861,7 @@ var _ModuleCommon = (function () {
                     if (videoSlideValue >= 595 && videoSlideValue <= 605) {
                         this.AddSliderData(sliderLength, true);
                         _Navigator.SetPageStatus(true);
+                        _Navigator.GetBookmarkData();
                         this.HotspotFeedback(_hotspot);
                     }
                     else {
@@ -959,7 +966,7 @@ var _ModuleCommon = (function () {
                 reviewData.push(_obj);
             }
 
-            _Navigator.SetBookmarkData();
+          
         },
         SetFeedbackTop: function () {
             var ptop = Number($("#div_feedback").position().top);
@@ -1091,6 +1098,7 @@ var _ModuleCommon = (function () {
                 _Navigator.SetPageScore(score)
                 var action = pageData.EmbedSettings.action;
                 _Navigator.SetPageStatus(true);
+                _Navigator.GetBookmarkData();
                 switch (action) {
                     case "next":
                         this.InputNext();
@@ -1112,6 +1120,7 @@ var _ModuleCommon = (function () {
             if (cropwidth > 240 && cropwidth < 295) {
                 this.AddCropData(cropwidth, cropheight, true);
                 _Navigator.SetPageStatus(true);
+                _Navigator.GetBookmarkData();
                 this.HotspotNext();
             }
             else {
@@ -1220,6 +1229,7 @@ var _ModuleCommon = (function () {
                 _Navigator.SetPageScore(score)
                 var action = pageData.EmbedSettings.action;
                 _Navigator.SetPageStatus(true);
+                _Navigator.GetBookmarkData();
                 switch (action) {
                     case "next":
                         this.InputNext();

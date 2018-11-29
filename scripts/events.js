@@ -466,6 +466,8 @@ $(document).on('change', '#videoSliderContainer .videoSliderValue', function () 
     var hours = Math.floor(videoSlideValue / 60);
     var minutes = videoSlideValue - (hours * 60);
     $('.videoSliderValue').removeAttr("value");
+    var seconds = hours > 1 ? " seconds " :" second ";
+    var miliseconds = minutes > 1 ? " milliseconds" :" millisecond";
     if ((hours + "").length == 1) hours = '0' + hours;
     if ((minutes + "").length == 1) minutes = '0' + minutes;
 
@@ -473,7 +475,8 @@ $(document).on('change', '#videoSliderContainer .videoSliderValue', function () 
     if(iOS && $(".slidervalue").attr("role")==undefined){
         $(this).attr("role","alert")
     }
-    $(".slidervalue").text("current end point for video set at "+hours + " hours " +minutes +" minutes" )
+   
+    $(".slidervalue").text("current end point for video set at "+hours + seconds + minutes +miliseconds )
     $('.videoSliderValue').attr("value", videoSlideValue);
     cust_ShowVideoSliderValue(videoSlideValue);
     

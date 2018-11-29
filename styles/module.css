@@ -522,3 +522,31 @@ th, td {
 .disabled.draggableImgPic , .disabled.draggableImgVideo  {
     opacity: 0.8;
 }
+@media all and (-ms-high-contrast:none){
+    .iscorrect { margin-top: 5px } /* IE10 */
+    .hintlink { left:66% } 
+     *::-ms-backdrop, .iscorrect { margin-top: 5px }  /* IE11 */
+     *::-ms-backdrop, .hintlink { left:66% }  /* IE11 */
+     
+     legend{      width:95%    }
+     *::-ms-backdrop, .legend { width:95% }  /* IE11 */
+  
+}
+@supports (-ms-accelerator:true) {
+    .iscorrect { margin-top: 5px } 
+
+    legend{
+        width:90%
+    }
+    .hintlink { left:66% } 
+}
+
+@supports (-ms-ime-align: auto) {
+    legend{
+        width:95%
+    }
+    .iscorrect { margin-top: 5px } 
+
+  
+    .hintlink { left:66% } 
+  }

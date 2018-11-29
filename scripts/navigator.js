@@ -5,8 +5,7 @@ var _Navigator = (function () {
     var _currentPageId = "";
     var _currentPageObject = {};
     var progressLevels = [47];
-    var totalsimscore = 18;
-    var presentermode = false;
+    var totalsimscore = 18;    
     var bookmarkpageid = "";
     var quizpageid = "p43";
     var _NData = {
@@ -39,7 +38,7 @@ var _Navigator = (function () {
             hinturl: "hintp3.htm",
             hasActivity: true,
             isDND: true,
-            accessText: "Windows Desktop with File Explore with Remove Disk(F:) Window open"
+            accessText: "Windows Desktop with File Explore with Remove Disk F drive Window open"
         },
         "p4": {
             pageId: "p4",
@@ -49,7 +48,7 @@ var _Navigator = (function () {
             hinturl: "hintp4.htm",
             hasActivity: true,
             isDND: false,
-            accessText: "Windows Desktop with File Explore with Remove Disk(F:) Window open"
+            accessText: "Windows Desktop with File Explore with Remove Disk F drive Window open"
         },
         "p5": {
             pageId: "p5",

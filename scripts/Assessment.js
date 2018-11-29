@@ -91,11 +91,20 @@ var _Assessment = (function () {
 				}
 			}
 			$(".question-band .assessmentradio").unwrap();
-			$("#Questioninfo").text("Performance Check: Mini-Quiz: Question " + parseInt(currentQuestionIndex + 1) + " of 4")
-			//removeCSS("styles/questionPlaceholder.css")
-			$(".intro-content-question").fadeIn(600)
+			$("#Questioninfo").empty();
 
-			$("#Questioninfo").focus();
+			$("#Questioninfo").text("Performance Check: Mini-Quiz: Question " + parseInt(currentQuestionIndex + 1) + " of 4")
+			
+			if(gRecordData.Status == "Completed")
+			{
+				$(".intro-content-question").show();
+			}
+			else
+			{
+				$(".intro-content-question").fadeIn(600)
+			}
+
+			
 			if (gRecordData.Status != "Completed") {
 				$("#linknext").k_disable();
 				if(currentQuestionIndex != 0)
@@ -113,6 +122,9 @@ var _Assessment = (function () {
 			_Navigator.UpdateProgressBar();
 			$(".assessmentSubmit").k_disable();
 			_Navigator.GetBookmarkData();
+			
+			$("#Questioninfo").focus();
+			
 		},
 		ShowQuestionPresenterMode: function () {
 			var currQuestion = gRecordData.Questions[currentQuestionIndex];
