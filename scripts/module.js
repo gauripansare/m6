@@ -338,36 +338,7 @@ var _ModuleCommon = (function () {
             $("#droppable").addClass("disabled")
             $(".reviewDiv").remove();
             $(".reviewimage").show();
-            var reviewData = this.GetPageReviewData();
-            var pageDetailData = this.GetPageDetailData();
-            if (reviewData != undefined && reviewData.Positions != undefined && reviewData.Positions.length > 0) {
-
-                /*for (var i = 0; i < reviewData.Positions.length; i++) {
-                    var posObj = reviewData.Positions[i];
-                    var appendImage = $(".wrapperimage");
-                    var ht1 = appendImage.height();
-                    var ht = appendImage.width();
-                    if (ht1 < 597) {
-                        ht1 = 597;
-                    }
-                    while ((posObj.posX + 40) > ht) {
-                        posObj.posX = posObj.posX - 2;
-                    }
-                    while ((posObj.posY + 40) > ht1) {
-                        posObj.posY = posObj.posY - 2;
-                    }
-                    if (posObj.isCorrect) {
-                        var _div = "<div class='reviewDiv Correct' aria-hidden='true' style='z-index:5;width:39px;height:39px;position:absolute;left:" + posObj.posX + "px;top:" + posObj.posY + "px;'><img src='" + posObj.src + "' style='width:" + posObj.width + "px;height:" + posObj.height + "px;float:left;' /><img src='assets/images/review-correct.png' style='width:39px;height:35px;' /></div>";
-                        appendImage.append(_div);
-
-                    } else {
-                        var _divI = "<div class='reviewDiv InCorrect' aria-hidden='true' style='z-index:5;width:39px;height:35px;position:absolute;left:" + posObj.posX + "px;top:" + posObj.posY + "px;'><img src='" + posObj.src + "' style='width:" + posObj.width + "px;height:" + posObj.height + "px;float:left;' /><img src='assets/images/review-incorrect.png' style='width:39px;height:35px;' /></div>";
-                        appendImage.append(_divI);
-                    }
-                }*/
-
-            }
-
+           
 
         },
         AddHotspotClick: function (hotspotObj, event, isCorrect) {
@@ -641,6 +612,7 @@ var _ModuleCommon = (function () {
             isCorrect = true;
             var getArray = [];
             var getidArray = [];
+            var appendImage = $(".wrapperimage");
             $(".divHotSpotCommon").each(function () {
 
                 getArray.push($(this).attr("hsid"))
@@ -696,12 +668,33 @@ var _ModuleCommon = (function () {
                             }
                             if (isCorrect) {
                                 if (pageData.ImageHotSpots.Hotspots[i].eventname == "dblclick") {
-                                    $(".divHotSpotdbl").addClass("hotspotclicked")
+                                    $(".divHotSpotdbl").addClass("hotspotclicked");
+                                    var hotpostPos  = $(".divHotSpotdbl").position();
+                                    var _div = "<div class='reviewDiv Correct' style='z-index:5;width:39px;height:39px;position:absolute;left:" + hotpostPos.left +"px;top:" + hotpostPos.top+"px;'><img src='assets/images/review-correct.png' style='width:39px;height:35px;' /></div>";
+                                    appendImage.append(_div);
+                                  
 
                                 }
                                 else if (pageData.ImageHotSpots.Hotspots[i].eventname != "noclick") {
 
-                                    $(".divHotSpot").addClass("hotspotclicked")
+                                    $(".divHotSpot").addClass("hotspotclicked");
+                                   if( currentPageData.pageId == "p25")
+                                   {
+                                   
+                                    for (var i = 0; i < pageData.ImageHotSpots.Hotspots.length; i++) {
+                                        var posObj = pageData.ImageHotSpots.Hotspots[i];
+                                        var _div = "<div class='reviewDiv Correct' style='z-index:5;width:39px;height:39px;position:absolute;left:" + posObj.left + ";top:" + posObj.top + ";'><img src='assets/images/review-correct.png' style='width:39px;height:35px;' /></div>";
+                                        appendImage.append(_div);
+                                    }
+
+                                   }
+                                   else{
+                                 
+                                    var posObj = pageData.ImageHotSpots.Hotspots[0];
+                                    var _div = "<div class='reviewDiv Correct' style='z-index:5;width:39px;height:39px;position:absolute;left:" + posObj.left + ";top:" + posObj.top + ";'><img src='assets/images/review-correct.png' style='width:39px;height:35px;' /></div>";
+                                    appendImage.append(_div);
+                                   }
+                                  
                                 }
                             }
                             else {
@@ -885,29 +878,7 @@ var _ModuleCommon = (function () {
                 var elm1 = document.getElementById('cropSliderdouble');
                 var timeout;
                 var lastTap = 0;
-                // elm1.addEventListener('touchend', function (event) {
-                //     var currentTime = new Date().getTime();
-                //     var tapLength = currentTime - lastTap;
-                //     clearTimeout(timeout);
-                //     if (tapLength < 5000 && tapLength > 0) {
-                //         var cropwidth = Number($('.cropSliderValue').val());
-                //         if (cropwidth >= 235 && cropwidth <= 295) {
-                //             //AddCropData(cropwidth, cropheight, true);
-                //             _ModuleCommon.CropEnter();
-                //         }
-                //         else {
-                //             //AddCropData(cropwidth, cropheight, false)
-
-                //             _ModuleCommon.AddCropData(cropwidth, cropheight, false);
-                //         }
-                //         event.preventDefault();
-                //     } else {
-                //         timeout = setTimeout(function () {
-                //             clearTimeout(timeout);
-                //         }, 500);
-                //     }
-                //     lastTap = currentTime;
-                // });
+            
             }
 
         },
@@ -1250,9 +1221,13 @@ var _ModuleCommon = (function () {
                 $("footer").show().css("display", "inline");
                 $("#linknext").k_enable();
             }
-            else {
-
-                $("footer").show().css("display", "inline");
+        },
+        AppendScormReviewFooter: function () {
+            if ($(".ScormReviewFooter").length == 0) {
+                var str = '<div class="ScormReviewFooter"> Review Mode</div>';
+                $("footer").append($(str));
+                $("footer").show();
+                $("#linknext").k_enable();
             }
         },
         AppendCss: function () {
