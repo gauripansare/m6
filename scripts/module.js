@@ -547,6 +547,7 @@ var _ModuleCommon = (function () {
             var div;
             $(".videoSliderValue").addClass("disabled");
             $(".videoSliderValue").k_disable();
+            $("#updateTimer").find("p").html("00:10.00")
             if (reviewData != undefined && reviewData.PositionsSlide != undefined) {
                 for (var i = 0; i < reviewData.PositionsSlide.length; i++) {
                     var correct = reviewData.PositionsSlide[i].isCorrect!=undefined && reviewData.PositionsSlide[i].isCorrect ? "correct " :"incorrect ";
