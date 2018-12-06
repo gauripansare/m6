@@ -486,6 +486,7 @@ $(document).on('change', '#videoSliderContainer .videoSliderValue', function () 
     $(".slidervalue").text("current end point for video set at "+hours + seconds + minutes +miliseconds )
     $('.videoSliderValue').attr("value", videoSlideValue);
     cust_ShowVideoSliderValue(videoSlideValue);
+   
     
 });
 

@@ -96,6 +96,7 @@ var _ModuleCommon = (function () {
             $(".draggableImgPic").addClass("PSDdraggble")
             $(".draggableImgVideo").addClass("PSDdraggble")
             $(".draggableImgPic").attr("dObjname", "Pictures folder");
+            
             $(".draggableImgVideo").attr("dObjname", "Video folder");
             if (isAndroid || iOS) {
                 $("#droppable").append('<img class="droppableImgBg" src="" alt=" Beautification folder droppable Background" style="width: 56px;height:71px;opacity:0;"></n3>');
@@ -626,9 +627,7 @@ var _ModuleCommon = (function () {
             var getidArray = [];
             var appendImage = $(".wrapperimage");
             $(".divHotSpotCommon").each(function () {
-
                 getArray.push($(this).attr("hsid"))
-
             })
             if ((currentPageData.pageId == "p5" || currentPageData.pageId == "p36") && pageData.EmbedSettings != undefined) {
                 $(".EmbededElement").show();
@@ -673,17 +672,18 @@ var _ModuleCommon = (function () {
                     for (var j = 0; j < getArray.length; j++) {
 
                         if (pageData.ImageHotSpots.Hotspots[i].HotspotId == getArray[j]) {
-
+                             
                             if (pageData.ImageHotSpots.Hotspots[i].isCorrect != undefined) {
                                 isCorrect = pageData.ImageHotSpots.Hotspots[i].isCorrect;
                             }
+                          
                             if (isCorrect) {
                                 if (pageData.ImageHotSpots.Hotspots[i].eventname == "dblclick") {
                                     $(".divHotSpotdbl").addClass("hotspotclicked");
-                                    var hotpostPos  = $(".divHotSpotdbl").position();
-                                    var _div = "<div class='reviewDiv Correct' style='z-index:5;width:39px;height:39px;position:absolute;left:" + hotpostPos.left +"px;top:" + hotpostPos.top+"px;'><img src='assets/images/review-correct.png' style='width:39px;height:35px;' /></div>";
+                                    var hotpostPos = $(".divHotSpotdbl").position();
+                                    var _div = "<div class='reviewDiv Correct' style='z-index:5;width:39px;height:39px;position:absolute;left:" + hotpostPos.left + "px;top:" + hotpostPos.top + "px;'><img src='assets/images/review-correct.png' style='width:39px;height:35px;' /></div>";
                                     appendImage.append(_div);
-                                  
+
 
                                 }
                                 else if (pageData.ImageHotSpots.Hotspots[i].eventname != "noclick") {
@@ -714,6 +714,7 @@ var _ModuleCommon = (function () {
 
                             }
                             //
+                        
                             break;
 
                         }
