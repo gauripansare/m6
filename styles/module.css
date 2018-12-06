@@ -137,7 +137,14 @@
     background: #fff;
 }
 
+.textentryaccessibility{
 
+    position: absolute;
+    top: 137px;
+    left: 230px;
+    padding-left:5px;
+
+}
 .divHotSpot,.divHotSpotdbl {
     position: absolute;
     cursor: pointer;

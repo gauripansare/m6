@@ -98,7 +98,8 @@ var _ModuleCommon = (function () {
             $(".draggableImgPic").attr("dObjname", "Pictures folder");
             $(".draggableImgVideo").attr("dObjname", "Video folder");
             if (isAndroid || iOS) {
-                $("#droppable").append('<img class="droppableImgBg" src="" alt=" Beautification folder droppable Background" style="width: 56px;height:71px;opacity:0;"></n3>')
+                $("#droppable").append('<img class="droppableImgBg" src="" alt=" Beautification folder droppable Background" style="width: 56px;height:71px;opacity:0;"></n3>');
+                $("#droppable").find("span").remove();
 
             }
             // $("#droppable").attr("aria-label","Beautifiaction committee folder droppable")
@@ -214,9 +215,7 @@ var _ModuleCommon = (function () {
 
             this.ShowFeedbackReviewMode();
             $(".divHotSpotCommon").each(function(){$(this).k_disable()});
-            // $(".divHotspotCommon").attr("aria-disabled", "true");
-            // $(".divHotspotCommon").addClass("disabled")
-            // $(".divHotspotCommon").attr("disabled", "true");
+      
         },
         InstructorReviewModeForTextEntry: function () {
             $(".EmbededElement").hide();
@@ -547,11 +546,23 @@ var _ModuleCommon = (function () {
             var div;
             $(".videoSliderValue").addClass("disabled");
             $(".videoSliderValue").k_disable();
-            $("#updateTimer").find("p").html("00:10.00")
+            /*display value in review mode*/
+            
+          //  $("#updateTimer").find("p").html("00:10.00")
             if (reviewData != undefined && reviewData.PositionsSlide != undefined) {
                 for (var i = 0; i < reviewData.PositionsSlide.length; i++) {
                     var correct = reviewData.PositionsSlide[i].isCorrect!=undefined && reviewData.PositionsSlide[i].isCorrect ? "correct " :"incorrect ";
                     var arialabel = correct + reviewData.PositionsSlide[i].accessText;
+                    var videoSlideValue = reviewData.PositionsSlide[i].videoValue;
+                    if(videoSlideValue != undefined && videoSlideValue > 0)
+                    {
+                    var hours = Math.floor(videoSlideValue / 60);
+                    var minutes = videoSlideValue - (hours * 60);
+                    $('.videoSliderValue').removeAttr("value");
+                    if ((hours + "").length == 1) hours = '0' + hours;
+                    if ((minutes + "").length == 1) minutes = '0' + minutes;
+                    $("#updateTimer").find("p").html("00:" + hours + "." + minutes);
+                    }
                     if (reviewData.PositionsSlide[i].isCorrect == true) {
                         div = "<div style='position:absolute;left:" + (reviewData.PositionsSlide[i].slideValue + 200) + "px;top:360px;width:1px;height:13px;border-right: 3px solid #01662C;' aria-label='"+ arialabel+"'></div>";
                     }
@@ -620,6 +631,7 @@ var _ModuleCommon = (function () {
 
             })
             if ((currentPageData.pageId == "p5" || currentPageData.pageId == "p36") && pageData.EmbedSettings != undefined) {
+                $(".EmbededElement").show();
                 $("input[type='text']").addClass("greenspan");
                 $("input[type='text']").val(pageData.EmbedSettings.validatearray[0]);
                 $("input[type='text']").k_disable();
@@ -637,7 +649,6 @@ var _ModuleCommon = (function () {
 
             if (currentPageData.pageId == "p30") {
 
-                //this.setCropPageData();
                 var appendImage = $(".wrapperimage");
                 var _div = "<div style='position:absolute;left:214px;top:182px;width:" + 291 + "px;height:" + 242 + "px;border-right: 3px dashed green;border-bottom: 3px dashed green;'></div>";
                 appendImage.append(_div);
@@ -645,8 +656,7 @@ var _ModuleCommon = (function () {
 
             }
             if (currentPageData.pageId == "p42") {
-                // var videoSlideValue = Number($('.videoSliderValue').val());
-                //  var sliderLength = parseInt(280 * videoSlideValue / 1195)
+            
                 var appendImage = $(".wrapperimage");
                 $("#updateTimer").find("p").html("00:10.00");
                 var div;
@@ -679,23 +689,24 @@ var _ModuleCommon = (function () {
                                 else if (pageData.ImageHotSpots.Hotspots[i].eventname != "noclick") {
 
                                     $(".divHotSpot").addClass("hotspotclicked");
-                                   if( currentPageData.pageId == "p25")
-                                   {
-                                   
-                                    for (var i = 0; i < pageData.ImageHotSpots.Hotspots.length; i++) {
-                                        var posObj = pageData.ImageHotSpots.Hotspots[i];
-                                        var _div = "<div class='reviewDiv Correct' style='z-index:5;width:39px;height:39px;position:absolute;left:" + posObj.left + ";top:" + posObj.top + ";'><img src='assets/images/review-correct.png' style='width:39px;height:35px;' /></div>";
-                                        appendImage.append(_div);
+                                    if (currentPageData.pageId == "p25") {
+
+                                        for (var i = 0; i < pageData.ImageHotSpots.Hotspots.length; i++) {
+                                            var posObj = pageData.ImageHotSpots.Hotspots[i];
+                                            var _div = "<div class='reviewDiv Correct' style='z-index:5;width:39px;height:39px;position:absolute;left:" + posObj.leftPX + ";top:" + posObj.topPX + ";'><img src='assets/images/review-correct.png' style='width:39px;height:35px;' /></div>";
+                                            appendImage.append(_div);
+                                        }
+
+                                    }
+                                    else {
+                                        //for (var i = 0; i < pageData.ImageHotSpots.Hotspots.length; i++) {
+                                            var posObj = pageData.ImageHotSpots.Hotspots[0];
+                                            var _div = "<div class='reviewDiv Correct' style='z-index:5;width:39px;height:39px;position:absolute;left:" + posObj.left + ";top:" + posObj.top + ";'><img src='assets/images/review-correct.png' style='width:39px;height:35px;' /></div>";
+                                            appendImage.append(_div);
+                                       // }
                                     }
 
-                                   }
-                                   else{
-                                 
-                                    var posObj = pageData.ImageHotSpots.Hotspots[0];
-                                    var _div = "<div class='reviewDiv Correct' style='z-index:5;width:39px;height:39px;position:absolute;left:" + posObj.left + ";top:" + posObj.top + ";'><img src='assets/images/review-correct.png' style='width:39px;height:35px;' /></div>";
-                                    appendImage.append(_div);
-                                   }
-                                  
+
                                 }
                             }
                             else {
@@ -853,13 +864,13 @@ var _ModuleCommon = (function () {
                     var sliderLength = parseInt(280 * videoSlideValue / 1195);
 
                     if (videoSlideValue >= 595 && videoSlideValue <= 605) {
-                        this.AddSliderData(sliderLength, true);
+                        this.AddSliderData(sliderLength, true, videoSlideValue);
                         _Navigator.SetPageStatus(true);
                         _Navigator.GetBookmarkData();
                         this.HotspotFeedback(_hotspot);
                     }
                     else {
-                        this.AddSliderData(sliderLength, false);
+                        this.AddSliderData(sliderLength, false, videoSlideValue);
                         $("#divHotspots0_1").hide();
                         $("#divHotspots0_1").removeAttr("disabled")
                         $("#divHotspots0_1").removeAttr("aria-disabled")
@@ -894,7 +905,7 @@ var _ModuleCommon = (function () {
             $(".wrapperimage").append(videoSlidetStr);
         },
 
-        AddSliderData: function (slideValue, isCorrect) {
+        AddSliderData: function (slideValue, isCorrect, videoSlideValue) {
             var found = false;
             var pageReviewData;
             var currentPageData = _Navigator.GetCurrentPage();
@@ -921,7 +932,7 @@ var _ModuleCommon = (function () {
 
                     }
                     else {
-                        var position = { slideValue: slideValue, isCorrect: isCorrect,accessText :accesstext };
+                        var position = { slideValue: slideValue, isCorrect: isCorrect,accessText :accesstext, videoValue:videoSlideValue};
                         reviewData[r].PositionsSlide = [position];
                     }
                     pageReviewData = reviewData[r];
@@ -932,7 +943,7 @@ var _ModuleCommon = (function () {
             if (!found) {
                 var _obj = {};
                 _obj.pageId = gCurrPageObj.PageId;
-                var position = { slideValue: slideValue, isCorrect: isCorrect ,accessText :accesstext};
+                var position = { slideValue: slideValue, isCorrect: isCorrect ,accessText :accesstext, videoValue:videoSlideValue};
                 _obj.PositionsSlide = [position];
                 pageReviewData = _obj;
                 reviewData.push(_obj);
@@ -959,7 +970,7 @@ var _ModuleCommon = (function () {
                     $("#div_feedback p:first").attr("role", "text")
                 }
                 //$('html,body').animate({ scrollTop: document.body.scrollHeight }, delay, function () {
-                window.scrollTo(0, document.body.scrollHeight)
+                window.scroll(0, document.body.scrollHeight)
                 $("#div_feedback p:first").focus();
                 //});
             });

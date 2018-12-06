@@ -91,13 +91,20 @@ $(document).on("click", ".dragdiv", function (event) {
         return;
     }
     else {     
-        $(".selected").attr("aria-selected","false")
+        if(! (isChrome || $isSafari))
+              $(".selected").attr("aria-selected","false")
         $(".selected").css("border","none")
         $(".selected").removeClass("selected")
       
         $(this).addClass("selected");
         $(this).css("border", "#ff8c00 solid 2px");
-        $(this).attr({"aria-selected":"true"})
+        if(isChrome || $isSafari)
+            {
+                $(this).attr({"aria-pressed":"true"})
+            }
+            else{
+                 $(this).attr({"aria-selected":"true"})
+            }
         $("#droppable").css('outline','#ff8c00 auto 2px')
     }
 

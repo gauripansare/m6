@@ -565,15 +565,21 @@ var _Navigator = (function () {
                                 }
 
                                 else if ((isiPhone || isAndroid) && _NData[_currentPageId].isLoaded != undefined && _NData[_currentPageId].isLoaded == true) {//iphone android on previous focus is set to header
-                                    $("h2").focus();
+                              
+                                         $("h2").focus();
                                 }
                                 else {
                                     //$(".header-informarion .hintlink").focus();
                                     //$("h2").focus();
-                                    if (isChrome) {
+                                    if(isiPhone || isAndroid){
+                                        $("#progressdiv").focus();
+
+                                      }
+                                    if (isChrome && !isAndroid) {
                                         $("h2").focus();
                                     }
-                                    else {
+                                    else{
+
                                         $("#progressdiv").focus();
                                     }
                                     // setReader("progressdiv");
