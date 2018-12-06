@@ -921,7 +921,7 @@ var _ModuleCommon = (function () {
                             }
                         }
                         if (!sameclick) {
-                            var position = { slideValue: slideValue, isCorrect: isCorrect,accessText :accesstext };
+                            var position = { slideValue: slideValue, isCorrect: isCorrect,accessText :accesstext,videoValue:videoSlideValue };
                             if (reviewData[r].PositionsSlide.length < 2) {
                                 reviewData[r].PositionsSlide.push(position);
                             }
