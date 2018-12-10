@@ -570,6 +570,10 @@ var _ModuleCommon = (function () {
                     else {
                         div = "<div style='position:absolute;left:" + (reviewData.PositionsSlide[i].slideValue + 200) + "px;top:360px;width:1px;height:13px;border-right: 3px solid #B22222;' aria-label='"+ arialabel+"'></div>";
                     }
+                    if(iOS || isAndroid){
+                        $(".slidervalue").html(arialabel);
+
+                    }
                     appendImage.append(div);
                 }
 
@@ -681,7 +685,7 @@ var _ModuleCommon = (function () {
                                 if (pageData.ImageHotSpots.Hotspots[i].eventname == "dblclick") {
                                     $(".divHotSpotdbl").addClass("hotspotclicked");
                                     var hotpostPos = $(".divHotSpotdbl").position();
-                                    var _div = "<div class='reviewDiv Correct' style='z-index:5;width:39px;height:39px;position:absolute;left:" + hotpostPos.left + "px;top:" + hotpostPos.top + "px;'><img src='assets/images/review-correct.png' style='width:39px;height:35px;' /></div>";
+                                    var _div = "<div class='reviewDiv Correct' style='z-index:5;width:35px;height:35px;position:absolute;left:" + hotpostPos.left + "px;top:" + hotpostPos.top + "px;'><img src='assets/images/review-correct.png' style='width:35px;height:30px;' /></div>";
                                     appendImage.append(_div);
 
 
@@ -693,7 +697,7 @@ var _ModuleCommon = (function () {
 
                                         for (var i = 0; i < pageData.ImageHotSpots.Hotspots.length; i++) {
                                             var posObj = pageData.ImageHotSpots.Hotspots[i];
-                                            var _div = "<div class='reviewDiv Correct' style='z-index:5;width:39px;height:39px;position:absolute;left:" + posObj.leftPX + ";top:" + posObj.topPX + ";'><img src='assets/images/review-correct.png' style='width:39px;height:35px;' /></div>";
+                                            var _div = "<div class='reviewDiv Correct' style='z-index:5;width:35px;height:35px;position:absolute;left:" + posObj.leftPX + ";top:" + posObj.topPX + ";'><img src='assets/images/review-correct.png' style='width:35px;height:30px;' /></div>";
                                             appendImage.append(_div);
                                         }
 
@@ -701,7 +705,7 @@ var _ModuleCommon = (function () {
                                     else {
                                         //for (var i = 0; i < pageData.ImageHotSpots.Hotspots.length; i++) {
                                             var posObj = pageData.ImageHotSpots.Hotspots[0];
-                                            var _div = "<div class='reviewDiv Correct' style='z-index:5;width:39px;height:39px;position:absolute;left:" + posObj.left + ";top:" + posObj.top + ";'><img src='assets/images/review-correct.png' style='width:39px;height:35px;' /></div>";
+                                            var _div = "<div class='reviewDiv Correct' style='z-index:5;width:35px;height:35px;position:absolute;left:" + posObj.left + ";top:" + posObj.top + ";'><img src='assets/images/review-correct.png' style='width:35px;height:30px;' /></div>";
                                             appendImage.append(_div);
                                        // }
                                     }
@@ -757,7 +761,8 @@ var _ModuleCommon = (function () {
         OrientationChange: function () {
 
             this.ApplycontainerWidth();
-
+            var target = $(".header-content-dock");
+            target.css({ "visibility": "hidden","top": "-80px"})
         },
         HotspotClick: function (_hotspot, event) {
             if (_Navigator.IsRevel()) {

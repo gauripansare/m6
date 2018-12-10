@@ -74,6 +74,11 @@
         height: 600px;
         overflow-y: scroll;
     }
+
+    .header-content-dock .progressdiv{
+        width:146px;
+
+    }
 }
 
 @media screen and (max-width : 500px) {
@@ -119,6 +124,8 @@
     }
     .header-content-dock .progressdiv{
         margin-top:4px;
+        margin-left:0px;
+        width:146px;
     }
 
     .header-content-dock .hintlinkspan{

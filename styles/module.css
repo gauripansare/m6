@@ -152,6 +152,8 @@
     outline: none;
     border: none;
 }
+
+
 .arrow {
 width: 21px;
  height: 23px;
@@ -504,7 +506,7 @@ th, td {
     margin: 5px 0;
 }
 #Summary .inpputtext{
-   margin: 0px;
+ margin: 0px !important;
 }
 /*Presenter Mode css start*/
 .presentationModeFooter, .ScormReviewFooter {
