@@ -697,7 +697,7 @@ var _ModuleCommon = (function () {
 
                                         for (var i = 0; i < pageData.ImageHotSpots.Hotspots.length; i++) {
                                             var posObj = pageData.ImageHotSpots.Hotspots[i];
-                                            var _div = "<div class='reviewDiv Correct' style='z-index:5;width:35px;height:35px;position:absolute;left:" + posObj.leftPX + ";top:" + posObj.topPX + ";'><img src='assets/images/review-correct.png' style='width:35px;height:30px;' /></div>";
+                                            var _div = "<div class='reviewDiv Correct' style='z-index:5;width:35px;height:35px;position:absolute;left:" + posObj.left + ";top:" + posObj.top + ";'><img src='assets/images/review-correct.png' style='width:35px;height:30px;' /></div>";
                                             appendImage.append(_div);
                                         }
 
@@ -1231,14 +1231,12 @@ var _ModuleCommon = (function () {
                 }
             }
         },
-        AppendFooter: function () {
-            if ($(".presentationModeFooter").length == 0) {
-               
-                var str = '<div class="presentationModeFooter">Presentation Mode</div>';
-                $("footer").append($(str));
-                $("footer").show().css("display", "inline");
-                $("#linknext").k_enable();
-            }
+        AppendFooter: function () {           
+                $("#header-progress .presentationModeFooter").show();             
+                
+                $("footer").show();
+                $("#linknext").k_enable();           
+            
         },
         AppendScormReviewFooter: function () {
             if ($(".ScormReviewFooter").length == 0) {

@@ -509,13 +509,27 @@ th, td {
  margin: 0px !important;
 }
 /*Presenter Mode css start*/
-.presentationModeFooter, .ScormReviewFooter {
+ .ScormReviewFooter {
     display: inline-block;
     background-color: #1a76cb;
     height: 29px;
     width: 100%;
     color: white;
     text-align: center;
+}
+.presentationModeFooter {
+    display: inline-block;
+    background-color: #047a9c;
+    height: 21px;
+    width: 135px;
+    color: white;
+    text-align: center;
+    /* float: left; */
+    position: absolute;
+    left: 0%;
+    top: 0;
+    padding: 3px;
+    font-size: 14px;
 }
 .accessibility{
     font-size: 0;
