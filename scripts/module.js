@@ -1238,13 +1238,19 @@ var _ModuleCommon = (function () {
                 $("#linknext").k_enable();           
             
         },
-        AppendScormReviewFooter: function () {
+       AppendScormReviewFooter: function () {
+            $(".presentationModeFooter").html('Review Mode');
+            $("#header-progress .presentationModeFooter").show();           
+                
+                $("footer").show();
+                $("#linknext").k_enable();   
+            /*
             if ($(".ScormReviewFooter").length == 0) {
                 var str = '<div class="ScormReviewFooter"> Review Mode</div>';
                 $("footer").append($(str));
                 $("footer").show();
                 $("#linknext").k_enable();
-            }
+            }*/
         },
         AppendCss: function () {
             if (isIE11version) {
