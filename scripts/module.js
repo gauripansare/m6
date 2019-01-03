@@ -624,6 +624,7 @@ var _ModuleCommon = (function () {
             }
         },
         PresenterMode: function () {
+            /*
             var currentPageData = _Navigator.GetCurrentPage();
             var pageData = this.GetPageDetailData();
             isCorrect = true;
@@ -732,9 +733,11 @@ var _ModuleCommon = (function () {
             $(".divHotSpotCommon").k_disable();
 
 
-            $("#linknext").k_enable();
+            
             _Navigator.SetPageStatus(true);
             _Navigator.UpdateProgressBar();
+            */
+           $("#linknext").k_enable();
         },
         ApplycontainerWidth: function () {
             var innerWidth = $(window).width();
