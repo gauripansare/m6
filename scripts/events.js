@@ -87,14 +87,14 @@ $(document).on("click", ".dragdiv", function (event) {
         return;
     }
     else {     
-        if(! (isChrome || $isSafari))
+        if(! (isChrome || isSafari))
               $(".selected").attr("aria-selected","false")
         $(".selected").css("border","none")
         $(".selected").removeClass("selected")
       
         $(this).addClass("selected");
         $(this).css("border", "#ff8c00 solid 2px");
-        if(isChrome || $isSafari)
+        if(isChrome || isSafari)
             {
                 $(this).attr({"aria-pressed":"true"})
             }
